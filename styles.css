@@ -1,0 +1,76 @@
+/* Reset default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Updated font settings */
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.logo {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+header {
+    text-align: left;
+    margin-bottom: 2rem;
+    font-family: 'Baskervville', serif;
+}
+
+h1 {
+    font-family: 'Baskervville', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+main {
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+main p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+    .container {
+        padding: 1rem;
+    }
+} 
