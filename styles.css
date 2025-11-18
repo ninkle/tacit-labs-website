@@ -133,8 +133,12 @@ body {
     text-decoration: underline;
 }
 
-/* Main Content */
-main {
+/* Main Content Container */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: flex-start;
     width: 100%;
 }
 
@@ -144,7 +148,7 @@ main {
     flex-direction: column;
     gap: 24px;
     align-items: center;
-    padding: 40px;
+    padding: 0 40px;
     width: 100%;
     max-width: 750px;
     margin: 0 auto;
@@ -184,7 +188,7 @@ main {
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    padding: 24px 40px;
+    padding: 0 40px;
     width: 100%;
 }
 
@@ -200,9 +204,9 @@ main {
 .content-section {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 8px;
     align-items: center;
-    padding: 40px;
+    padding: 0 40px;
     width: 100%;
     max-width: 750px;
     margin: 0 auto;
@@ -236,13 +240,34 @@ main {
     margin-bottom: 0;
 }
 
+/* Team Section */
+.team-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    padding: 0 40px;
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.team-content {
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--color-text-black);
+    width: 100%;
+}
+
 /* Join Section */
 .join-section {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 8px;
     align-items: flex-start;
-    padding: 0 40px 40px;
+    padding: 0 40px;
     width: 100%;
     max-width: 750px;
     margin: 0 auto;
@@ -325,6 +350,10 @@ main {
 
 /* Tablets (481px - 768px) */
 @media (max-width: 768px) {
+    .main-container {
+        gap: 32px;
+    }
+
     .main-header {
         flex-wrap: wrap;
         gap: 16px;
@@ -350,8 +379,9 @@ main {
 
     .hero-section,
     .content-section,
+    .team-section,
     .join-section {
-        padding: 32px 24px;
+        padding: 0 24px;
         max-width: 100%;
     }
 
@@ -377,6 +407,10 @@ main {
 
 /* Mobile devices (320px - 480px) */
 @media (max-width: 480px) {
+    .main-container {
+        gap: 24px;
+    }
+
     .main-header {
         padding: 16px;
         gap: 12px;
@@ -399,8 +433,9 @@ main {
 
     .hero-section,
     .content-section,
+    .team-section,
     .join-section {
-        padding: 24px 16px;
+        padding: 0 16px;
         gap: 20px;
     }
 
@@ -446,14 +481,19 @@ main {
 
 /* Small mobile devices (< 320px) */
 @media (max-width: 320px) {
+    .main-container {
+        gap: 20px;
+    }
+
     .main-header {
         padding: 12px;
     }
 
     .hero-section,
     .content-section,
+    .team-section,
     .join-section {
-        padding: 20px 12px;
+        padding: 0 12px;
         gap: 16px;
     }
 
