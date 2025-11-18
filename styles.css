@@ -166,7 +166,11 @@ main {
 }
 
 .hero-content p {
-    margin: 0;
+    margin: 0 0 1em 0;
+}
+
+.hero-content p:last-child {
+    margin-bottom: 0;
 }
 
 /* Image Section */
@@ -220,7 +224,11 @@ main {
 }
 
 .section-content p {
-    margin: 0;
+    margin: 0 0 1em 0;
+}
+
+.section-content p:last-child {
+    margin-bottom: 0;
 }
 
 /* Join Section */
