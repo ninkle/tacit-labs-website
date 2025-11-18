@@ -150,7 +150,8 @@ body {
     align-items: center;
     padding: 0 40px;
     width: 100%;
-    max-width: 750px;
+    max-width: 67.5%;
+    min-width: 320px;
     margin: 0 auto;
 }
 
@@ -194,7 +195,8 @@ body {
 
 .main-image {
     width: 100%;
-    max-width: 750px;
+    max-width: 67.5%;
+    min-width: 320px;
     height: 340px;
     object-fit: cover;
     display: block;
@@ -208,7 +210,8 @@ body {
     align-items: center;
     padding: 0 40px;
     width: 100%;
-    max-width: 750px;
+    max-width: 67.5%;
+    min-width: 320px;
     margin: 0 auto;
 }
 
@@ -248,7 +251,8 @@ body {
     align-items: center;
     padding: 0 40px;
     width: 100%;
-    max-width: 750px;
+    max-width: 67.5%;
+    min-width: 320px;
     margin: 0 auto;
 }
 
@@ -259,6 +263,7 @@ body {
     line-height: normal;
     color: var(--color-text-black);
     width: 100%;
+    text-align: left;
 }
 
 /* Join Section */
@@ -269,7 +274,8 @@ body {
     align-items: flex-start;
     padding: 0 40px;
     width: 100%;
-    max-width: 750px;
+    max-width: 67.5%;
+    min-width: 320px;
     margin: 0 auto;
 }
 
