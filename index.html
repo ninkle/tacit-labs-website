@@ -10,28 +10,59 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baskervville&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="logo">
-            <!-- Replace src with your logo path -->
-            <img src="Tacit Logo.png" alt="Logo">
+    <header class="main-header">
+        <div class="header-left">
+            <p class="header-text">Become an expert</p>
         </div>
-        <header>
-            <h1>Tacit Labs</h1>
-            <h2>By <a href="https://ninkle.github.io/" target="_blank">Nicole Fitzgerald</a> 
-        </header>
-        <main>
-            <p>Tacit enables frontier labs to develop LLM capabilities for the life sciences by collecting high quality data on how science is done. </p>
+        <div class="header-center">
+            <div class="logo-container">
+                <img src="assets/images/logo.png" alt="Tacit Labs Logo" class="logo-img">
+            </div>
+            <h1 class="company-name">Tacit Labs</h1>
+        </div>
+        <div class="header-right">
+            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#join" class="nav-link">Join</a>
+        </div>
+    </header>
 
-            <p>We imagine a future in which AI is a powerful tool for scientific discovery, capable of helping us reason through complex problems and driving optimal decision-making across discovery and development pipelines.</p>
-                
-            <p>Tacit collaborates with biotechs and academic labs to evaluate models on high-value, real-world tasks and works with frontier AI labs to systematically improve model performance on those tasks. Data collection will focus on outcome-verifiable, long-horizon planning and reasoning tasks to power the most critical functions in the life sciences. </p>
+    <main>
+        <section class="hero-section">
+            <h2 class="hero-title">Tacit is the data layer that powers<br>AI for Science.</h2>
+            <div class="hero-content">
+                <p>We imagine a future in which AI is a powerful tool for scientific discovery, capable of helping us reason through complex problems and driving optimal decision-making across discovery and development pipelines.</p>
+                <p>Tacit collaborates with biotechs and academic labs to evaluate models on high-value, real-world tasks and works with frontier AI labs to systematically improve model performance on those tasks. Data collection will focus on outcome-verifiable, long-horizon planning and reasoning tasks to power the most critical functions in the life sciences</p>
+            </div>
+        </section>
 
-            <p>Tacit is supported by <a href="https://www.linkedin.com/in/alanagoyal/" target="_blank">Alana Goyal</a> at <a href="https://basecase.vc/" target="_blank">Basecase</a>, <a href="https://www.linkedin.com/in/terrencerohan/" target="_blank">Terrence Rohan</a> at <a href="https://otherwise.com/" target="_blank">Otherwise</a>, <a href="https://soleio.cv/" target="_blank">Soleio</a>, <a href="https://www.linkedin.com/in/thomas-wolf-a056857/">Thomas Wolf</a> (<a href="https://huggingface.co/" target="_blank">Hugging Face</a>), <a href="https://www.linkedin.com/in/jonathan-frankle/" target="_blank">Jonathan Frankle</a> (<a href="https://www.databricks.com/" target="_blank">MosaicML</a>), <a href="https://www.linkedin.com/in/matthew-leavitt/" target="_blank">Matthew Leavitt</a> (<a href="https://www.datology.ai/" target="_blank">Datology</a>), <a href="https://www.linkedin.com/in/danshipper/" target="_blank">Dan Shipper</a> (<a href="https://every.to/" target="_blank">Every</a>), and others.</p>
-        </main>
-    </div>
+        <section class="image-section">
+            <img src="assets/images/main-image.png" alt="Scientific laboratory scene" class="main-image">
+        </section>
+
+        <section class="content-section">
+            <h3 class="section-title">Powering the next-frontier of scientific discovery</h3>
+            <div class="section-content">
+                <p>Language models have gotten really good in certain domains, like coding and math. That's partly because there's so much clean, structured data (think of GitHub as a massive data repository; automated proof checkers as verifiers), and partly because everyone in ML already knows what "good" looks like in those fields. But in science (especially drug discovery) model capabilities are behind. Not because the models can't eventually get there, but because the right data and evaluation frameworks don't exist yet.</p>
+                <p>This is the core project at Tacit Labs — we're building the "frontier" of scientific tasks—basically, the kinds of problems that expert scientists actually care about, framed in a way that lets us evaluate how well models can reason through them. We're starting in a few specific modalities, namely small molecules and proteins, but would like to create data representing problems in many different modalities all across the discovery/development pipeline. At the end of the day, we're a data company focused on capturing expert reasoning in life sciences.</p>
+                <p>What does this look like in practice? We bring in domain experts—people like you—to design problems and stress-test frontier models. The sweet spot is: (1) high-value, real-world questions you'd actually face in your work, and (2) hard enough that today's models fall short, but not impossible. Then we define how to check whether an answer is good—sometimes that's a rubric, sometimes a property calculation, sometimes a bioinformatics script. The result is a dataset of expert-authored problems, reasoning traces, and evaluation signals that we can use to train and benchmark AI systems.</p>
+            </div>
+        </section>
+
+        <section class="join-section" id="join">
+            <h3 class="section-title">Join us</h3>
+            <p class="join-content">We're building [xxx] and are looking for <a href="#" class="underline-link">scientists</a> and <a href="#" class="underline-link">researchers</a> to join us in our endeavor to accelerate scientific discovery.</p>
+            <a href="#" class="open-roles-link">Open Roles</a>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>Tacit Labs 2025</p>
+        <a href="#contact" class="footer-link">Contact</a>
+        <a href="#join" class="footer-link">Join</a>
+    </footer>
 </body>
-</html> 
+</html>
