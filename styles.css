@@ -36,6 +36,11 @@
 }
 
 /* Fallback to Inter if PP Neue Montreal is not available */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 body {
     font-family: 'PP Neue Montreal', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: normal;
@@ -304,51 +309,110 @@ main {
 }
 
 /* Responsive Design */
-@media (max-width: 900px) {
+
+/* Large tablets and small desktops (768px - 1024px) */
+@media (max-width: 1024px) {
+    .hero-section,
+    .content-section,
+    .join-section {
+        max-width: 90%;
+    }
+    
+    .main-image {
+        max-width: 90%;
+    }
+}
+
+/* Tablets (481px - 768px) */
+@media (max-width: 768px) {
     .main-header {
-        flex-direction: column;
-        gap: 20px;
+        flex-wrap: wrap;
+        gap: 16px;
         padding: 20px;
     }
 
-    .header-left,
-    .header-right {
-        flex: none;
-        width: 100%;
+    .header-left {
+        order: 2;
+        flex: 1 1 100%;
         justify-content: center;
     }
 
     .header-center {
-        order: -1;
+        order: 1;
+        flex: 1 1 100%;
+    }
+
+    .header-right {
+        order: 3;
+        flex: 1 1 100%;
+        justify-content: center;
     }
 
     .hero-section,
     .content-section,
     .join-section {
-        padding: 24px 20px;
+        padding: 32px 24px;
+        max-width: 100%;
     }
 
     .hero-title {
-        font-size: 32px;
+        font-size: 36px;
+        letter-spacing: -0.36px;
+    }
+
+    .section-title {
+        font-size: 19px;
     }
 
     .image-section {
-        padding: 20px;
+        padding: 20px 24px;
     }
 
     .main-image {
+        max-width: 100%;
         height: auto;
-        max-height: 340px;
+        max-height: 300px;
     }
 }
 
-@media (max-width: 600px) {
+/* Mobile devices (320px - 480px) */
+@media (max-width: 480px) {
+    .main-header {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .header-text,
+    .nav-link {
+        font-size: 11px;
+    }
+
+    .company-name {
+        font-size: 20px;
+        letter-spacing: -0.2px;
+    }
+
+    .logo-container {
+        width: 36px;
+        height: 36px;
+    }
+
+    .hero-section,
+    .content-section,
+    .join-section {
+        padding: 24px 16px;
+        gap: 20px;
+    }
+
     .hero-title {
         font-size: 28px;
+        letter-spacing: -0.28px;
+        line-height: 1.2;
     }
 
     .section-title {
         font-size: 18px;
+        letter-spacing: -0.18px;
     }
 
     body,
@@ -358,10 +422,83 @@ main {
         font-size: 16px;
     }
 
+    .image-section {
+        padding: 16px;
+        gap: 8px;
+    }
+
+    .main-image {
+        max-height: 250px;
+    }
+
     .main-footer {
         flex-direction: column;
         height: auto;
-        padding: 20px;
-        gap: 8px;
+        padding: 24px 16px;
+        gap: 12px;
+        font-size: 11px;
+    }
+
+    .open-roles-link {
+        font-size: 11px;
+    }
+}
+
+/* Small mobile devices (< 320px) */
+@media (max-width: 320px) {
+    .main-header {
+        padding: 12px;
+    }
+
+    .hero-section,
+    .content-section,
+    .join-section {
+        padding: 20px 12px;
+        gap: 16px;
+    }
+
+    .hero-title {
+        font-size: 24px;
+        letter-spacing: -0.24px;
+    }
+
+    .section-title {
+        font-size: 16px;
+        letter-spacing: -0.16px;
+    }
+
+    body,
+    .hero-content,
+    .section-content,
+    .join-content {
+        font-size: 15px;
+    }
+
+    .image-section {
+        padding: 12px;
+    }
+
+    .main-image {
+        max-height: 200px;
+    }
+}
+
+/* Ensure images don't overflow */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Better text wrapping on small screens */
+@media (max-width: 768px) {
+    .hero-title br {
+        display: block;
+    }
+    
+    .header-text,
+    .nav-link,
+    .footer-link {
+        white-space: normal;
+        word-break: break-word;
     }
 }
