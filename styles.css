@@ -16,9 +16,29 @@
     --color-green: #61c554;
 }
 
+/* PP Neue Montreal Font Face - will be used when font files are uploaded */
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('assets/fonts/PPNeueMontreal-Book.woff2') format('woff2'),
+         url('assets/fonts/PPNeueMontreal-Book.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('assets/fonts/PPNeueMontreal-Medium.woff2') format('woff2'),
+         url('assets/fonts/PPNeueMontreal-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Fallback to Inter if PP Neue Montreal is not available */
 body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.4;
+    font-family: 'PP Neue Montreal', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: normal;
     color: var(--color-text-black);
     background-color: #fff;
     font-size: 17px;
@@ -42,7 +62,7 @@ body {
 }
 
 .header-text {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
@@ -94,7 +114,7 @@ body {
 }
 
 .nav-link {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
@@ -137,7 +157,7 @@ main {
 }
 
 .hero-content {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
     font-size: 17px;
     font-weight: 400;
     line-height: normal;
@@ -146,11 +166,7 @@ main {
 }
 
 .hero-content p {
-    margin-bottom: 0;
-}
-
-.hero-content p + p {
-    margin-top: 0;
+    margin: 0;
 }
 
 /* Image Section */
@@ -195,7 +211,7 @@ main {
 }
 
 .section-content {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
     font-size: 17px;
     font-weight: 400;
     line-height: normal;
@@ -204,11 +220,7 @@ main {
 }
 
 .section-content p {
-    margin-bottom: 0;
-}
-
-.section-content p + p {
-    margin-top: 0;
+    margin: 0;
 }
 
 /* Join Section */
@@ -224,7 +236,7 @@ main {
 }
 
 .join-content {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
     font-size: 17px;
     font-weight: 400;
     line-height: normal;
@@ -244,7 +256,7 @@ main {
 }
 
 .open-roles-link {
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
@@ -265,7 +277,7 @@ main {
     justify-content: center;
     gap: 10px;
     height: 84px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
