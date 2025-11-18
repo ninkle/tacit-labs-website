@@ -16,33 +16,13 @@
     --color-green: #61c554;
 }
 
-/* PP Neue Montreal Font Face - will be used when font files are uploaded */
-@font-face {
-    font-family: 'PP Neue Montreal';
-    src: url('assets/fonts/PPNeueMontreal-Book.woff2') format('woff2'),
-         url('assets/fonts/PPNeueMontreal-Book.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'PP Neue Montreal';
-    src: url('assets/fonts/PPNeueMontreal-Medium.woff2') format('woff2'),
-         url('assets/fonts/PPNeueMontreal-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* Fallback to Inter if PP Neue Montreal is not available */
 html, body {
     overflow-x: hidden;
     max-width: 100vw;
 }
 
 body {
-    font-family: 'PP Neue Montreal', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: normal;
     color: var(--color-text-black);
     background-color: #fff;
@@ -67,7 +47,7 @@ body {
 }
 
 .header-text {
-    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
@@ -119,7 +99,7 @@ body {
 }
 
 .nav-link {
-    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
@@ -167,7 +147,7 @@ body {
 }
 
 .hero-content {
-    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 17px;
     font-weight: 400;
     line-height: normal;
@@ -227,7 +207,7 @@ body {
 }
 
 .section-content {
-    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 17px;
     font-weight: 400;
     line-height: normal;
@@ -257,7 +237,7 @@ body {
 }
 
 .team-content {
-    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 17px;
     font-weight: 400;
     line-height: normal;
@@ -280,7 +260,7 @@ body {
 }
 
 .join-content {
-    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 17px;
     font-weight: 400;
     line-height: normal;
@@ -300,7 +280,7 @@ body {
 }
 
 .open-roles-link {
-    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
@@ -321,7 +301,7 @@ body {
     justify-content: center;
     gap: 10px;
     height: 84px;
-    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;

@@ -1,13 +1,10 @@
-# PP Neue Montreal Font Files
+# Font Files
 
-Please place the following font files in this directory:
-
-- `PPNeueMontreal-Book.woff2` (or `.woff`)
-- `PPNeueMontreal-Medium.woff2` (or `.woff`)
-
-The CSS is already configured to use these fonts. If the files are not present, the site will fall back to Inter font.
+This project uses **Work Sans** from Google Fonts, which is loaded via the CDN link in `index.html`. No local font files are required.
 
 ## Font Weights Used:
-- **Book (400)**: Body text (17px)
+- **Regular (400)**: Body text (17px)
 - **Medium (500)**: Header text, navigation links, footer (12px)
+
+The font is configured in `styles.css` and loaded from Google Fonts in `index.html`.
 
