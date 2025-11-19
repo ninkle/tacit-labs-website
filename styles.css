@@ -150,12 +150,11 @@ body {
     align-items: center;
     padding: 0px;
     gap: 10px;
-    width: 797px;
+    width: auto;
     height: 40px;
-    flex: none;
+    flex: 1;
     order: 1;
     align-self: stretch;
-    flex-grow: 1;
 }
 
 .header-nav-wrapper {
@@ -475,7 +474,7 @@ body {
         max-width: 80%;
         padding: 32px 0px;
         height: auto;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         gap: 16px;
     }
 
@@ -486,16 +485,17 @@ body {
     }
 
     .header-right {
-        width: auto;
+        width: 100%;
         height: auto;
         justify-content: flex-end;
-        flex: 1;
+        flex: 1 1 100%;
         min-width: 0;
+        margin-top: 8px;
     }
 
     .header-nav-wrapper {
-        width: auto;
-        flex-wrap: nowrap;
+        width: 100%;
+        flex-wrap: wrap;
         justify-content: flex-end;
         gap: 16px;
         min-width: 0;
