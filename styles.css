@@ -151,7 +151,7 @@ body {
     align-items: center;
     padding: 0 40px;
     width: 100%;
-    max-width: 67.5%;
+    max-width: 47.25%;
     min-width: 320px;
     margin: 0 auto;
 }
@@ -192,14 +192,15 @@ body {
     align-items: center;
     padding: 0 40px;
     width: 100%;
+    max-width: 67.5%;
+    min-width: 320px;
+    margin: 0 auto;
 }
 
 .main-image {
     width: 100%;
-    max-width: 67.5%;
-    min-width: 320px;
-    height: 340px;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     display: block;
 }
 
@@ -284,7 +285,7 @@ body {
     display: flex;
     gap: 84px;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
 }
 
@@ -294,7 +295,6 @@ body {
     gap: 8px;
     align-items: flex-start;
     flex: 1;
-    max-width: 336px;
 }
 
 .join-content {
@@ -383,11 +383,8 @@ body {
 @media (max-width: 1024px) {
     .hero-section,
     .content-section,
+    .image-section,
     .join-section {
-        max-width: 90%;
-    }
-    
-    .main-image {
         max-width: 90%;
     }
 }
@@ -423,6 +420,7 @@ body {
 
     .hero-section,
     .content-section,
+    .image-section,
     .team-section,
     .join-section {
         padding: 0 24px;
@@ -441,16 +439,6 @@ body {
 
     .section-title {
         font-size: 19px;
-    }
-
-    .image-section {
-        padding: 20px 24px;
-    }
-
-    .main-image {
-        max-width: 100%;
-        height: auto;
-        max-height: 300px;
     }
 }
 
@@ -508,12 +496,8 @@ body {
     }
 
     .image-section {
-        padding: 16px;
+        padding: 0 16px;
         gap: 8px;
-    }
-
-    .main-image {
-        max-height: 250px;
     }
 
     .main-footer {
@@ -542,6 +526,7 @@ body {
 
     .hero-section,
     .content-section,
+    .image-section,
     .team-section,
     .join-section {
         padding: 0 12px;
@@ -563,14 +548,6 @@ body {
     .section-content,
     .join-content {
         font-size: 15px;
-    }
-
-    .image-section {
-        padding: 12px;
-    }
-
-    .main-image {
-        max-height: 200px;
     }
 }
 
