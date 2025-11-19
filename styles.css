@@ -422,7 +422,7 @@ body {
     justify-content: center;
     gap: 10px;
     padding-top: 60px;
-    padding-bottom: 40px;
+    padding-bottom: 24px;
     font-family: 'Work Sans', sans-serif;
     font-size: 12px;
     font-weight: 500;
@@ -648,7 +648,7 @@ body {
     .main-footer {
         flex-direction: column;
         height: auto;
-        padding: 24px 16px 32px 16px;
+        padding: 24px 16px 24px 16px;
         gap: 12px;
         font-size: 11px;
     }
