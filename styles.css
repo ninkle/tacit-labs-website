@@ -75,6 +75,11 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.header-button:hover {
+    background-color: #c0c0c0;
 }
 
 .header-center {
@@ -116,7 +121,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 24px;
 }
 
 .nav-link {
@@ -165,10 +170,6 @@ body {
     letter-spacing: -0.4px;
     text-align: left;
     width: 100%;
-}
-
-.ai-for-science {
-    white-space: nowrap;
 }
 
 .hero-content {
@@ -336,6 +337,11 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.action-button:hover {
+    background-color: #c0c0c0;
 }
 
 .open-roles-link {
@@ -483,8 +489,8 @@ body {
     }
 
     .hero-title {
-        font-size: 28px;
-        letter-spacing: -0.28px;
+        font-size: 30px;
+        letter-spacing: -0.3px;
         line-height: 1.2;
     }
 
@@ -539,8 +545,8 @@ body {
     }
 
     .hero-title {
-        font-size: 24px;
-        letter-spacing: -0.24px;
+        font-size: 26px;
+        letter-spacing: -0.26px;
     }
 
     .section-title {
