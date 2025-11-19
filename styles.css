@@ -167,6 +167,10 @@ body {
     width: 100%;
 }
 
+.ai-for-science {
+    white-space: nowrap;
+}
+
 .hero-content {
     font-family: 'Work Sans', sans-serif;
     font-size: 17px;
