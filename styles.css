@@ -41,6 +41,7 @@ body {
     height: auto;
     flex: none;
     box-sizing: border-box;
+    justify-content: space-between;
 }
 
 .header-left {
@@ -102,9 +103,11 @@ body {
     gap: 10px;
     width: auto;
     height: auto;
-    flex: none;
+    flex: 0 0 auto;
     order: 0;
-    flex-grow: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .logo-container {
@@ -240,14 +243,15 @@ body {
     gap: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    transform: translateY(-100%);
+    max-height: 0;
+    overflow: hidden;
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
 }
 
 .mobile-menu.active {
-    transform: translateY(0);
+    max-height: 500px;
     opacity: 1;
     pointer-events: all;
 }
@@ -535,7 +539,7 @@ body.menu-open {
 /* Large tablets and small desktops (768px - 1024px) */
 @media (max-width: 1024px) {
     .main-header {
-        padding: 24px 32px;
+        padding: 24px 40px;
     }
 
     .hero-section,
@@ -570,6 +574,9 @@ body.menu-open {
         width: auto;
         flex: 0 0 auto;
         min-width: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .header-right {
@@ -653,10 +660,14 @@ body.menu-open {
         order: 1;
         flex-direction: row;
         gap: 8px;
+        position: static;
+        transform: none;
+        left: auto;
     }
 
     .header-center .company-name {
-        display: none;
+        font-size: 14px;
+        letter-spacing: -0.14px;
     }
 
     .header-right {
@@ -730,7 +741,7 @@ body.menu-open {
     .hero-content,
     .section-content,
     .join-content {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .hero-content p,
@@ -793,10 +804,14 @@ body.menu-open {
         order: 1;
         flex-direction: row;
         gap: 8px;
+        position: static;
+        transform: none;
+        left: auto;
     }
 
     .header-center .company-name {
-        display: none;
+        font-size: 14px;
+        letter-spacing: -0.14px;
     }
 
     .header-right {
@@ -820,11 +835,6 @@ body.menu-open {
     .header-button {
         font-size: 10px;
         padding: 3px 6px;
-    }
-
-    .company-name {
-        font-size: 18px;
-        letter-spacing: -0.18px;
     }
 
     .logo-container {
@@ -867,7 +877,7 @@ body.menu-open {
     .hero-content,
     .section-content,
     .join-content {
-        font-size: 12px;
+        font-size: 14px;
     }
 }
 
