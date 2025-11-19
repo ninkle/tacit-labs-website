@@ -38,7 +38,7 @@ body {
     padding: 40px 0px;
     gap: 10px;
     width: 100%;
-    max-width: 65%;
+    max-width: 60%;
     min-width: 320px;
     height: 120px;
     flex: none;
@@ -206,9 +206,9 @@ body {
     flex-direction: column;
     gap: 24px;
     align-items: center;
-    padding: 0 40px;
+    padding: 0;
     width: 100%;
-    max-width: 65%;
+    max-width: 60%;
     min-width: 320px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -248,9 +248,9 @@ body {
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    padding: 0 40px;
+    padding: 0;
     width: 100%;
-    max-width: 65%;
+    max-width: 60%;
     min-width: 320px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -270,9 +270,9 @@ body {
     flex-direction: column;
     gap: 8px;
     align-items: center;
-    padding: 0 40px;
+    padding: 0;
     width: 100%;
-    max-width: 65%;
+    max-width: 60%;
     min-width: 320px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -312,9 +312,9 @@ body {
     flex-direction: column;
     gap: 8px;
     align-items: center;
-    padding: 0 40px;
+    padding: 0;
     width: 100%;
-    max-width: 65%;
+    max-width: 60%;
     min-width: 320px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -336,10 +336,9 @@ body {
     flex-direction: column;
     gap: 24px;
     align-items: center;
-    padding: 0 40px;
     padding-top: 40px;
     width: 100%;
-    max-width: 65%;
+    max-width: 60%;
     min-width: 320px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -423,6 +422,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    padding-top: 24px;
     height: 84px;
     font-family: 'Work Sans', sans-serif;
     font-size: 12px;
@@ -451,7 +451,7 @@ body {
 /* Large tablets and small desktops (768px - 1024px) */
 @media (max-width: 1024px) {
     .main-header {
-        max-width: 75%;
+        max-width: 70%;
         padding: 40px 0px;
     }
 
@@ -460,8 +460,8 @@ body {
     .image-section,
     .team-section,
     .join-section {
-        max-width: 75%;
-        padding: 0 32px;
+        max-width: 70%;
+        padding: 0;
     }
 }
 
@@ -472,7 +472,7 @@ body {
     }
 
     .main-header {
-        max-width: 85%;
+        max-width: 80%;
         padding: 32px 0px;
         height: auto;
         flex-wrap: nowrap;
@@ -512,8 +512,8 @@ body {
     .image-section,
     .team-section,
     .join-section {
-        max-width: 85%;
-        padding: 0 32px;
+        max-width: 80%;
+        padding: 0;
     }
 
     .join-columns {
@@ -549,7 +549,7 @@ body {
     }
 
     .main-header {
-        max-width: 90%;
+        max-width: 85%;
         padding: 24px 0px;
         height: auto;
         gap: 12px;
@@ -606,14 +606,14 @@ body {
     .content-section,
     .team-section,
     .join-section {
-        max-width: 90%;
-        padding: 0 24px;
+        max-width: 85%;
+        padding: 0;
         gap: 20px;
     }
 
     .image-section {
-        max-width: 90%;
-        padding: 0 24px;
+        max-width: 85%;
+        padding: 0;
         gap: 8px;
     }
 
@@ -667,7 +667,7 @@ body {
     }
 
     .main-header {
-        max-width: 92%;
+        max-width: 87%;
         padding: 20px 0px;
         gap: 8px;
     }
@@ -706,8 +706,8 @@ body {
     .image-section,
     .team-section,
     .join-section {
-        max-width: 92%;
-        padding: 0 20px;
+        max-width: 87%;
+        padding: 0;
         gap: 16px;
     }
 
