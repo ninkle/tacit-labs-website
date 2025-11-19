@@ -38,11 +38,8 @@ body {
     padding: 24px 40px;
     gap: 10px;
     width: 100%;
-    max-width: 50%;
-    min-width: 320px;
     height: auto;
     flex: none;
-    margin: 0 auto;
     box-sizing: border-box;
 }
 
@@ -476,7 +473,6 @@ body {
     }
 
     .main-header {
-        max-width: 70%;
         padding: 24px 32px;
         height: auto;
         flex-wrap: nowrap;
@@ -558,7 +554,6 @@ body {
     }
 
     .main-header {
-        max-width: 75%;
         padding: 24px 24px;
         height: auto;
         gap: 12px;
@@ -683,7 +678,6 @@ body {
     }
 
     .main-header {
-        max-width: 77%;
         padding: 20px 20px;
         gap: 8px;
     }
