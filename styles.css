@@ -26,7 +26,7 @@ body {
     line-height: normal;
     color: var(--color-text-black);
     background-color: #fff;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 400;
 }
 
@@ -226,7 +226,7 @@ body {
 
 .hero-content {
     font-family: 'Work Sans', sans-serif;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 140%;
     color: var(--color-text-black);
@@ -290,7 +290,7 @@ body {
 
 .section-content {
     font-family: 'Work Sans', sans-serif;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 140%;
     color: var(--color-text-black);
@@ -321,7 +321,7 @@ body {
 
 .team-content {
     font-family: 'Work Sans', sans-serif;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 140%;
     color: var(--color-text-black);
@@ -361,7 +361,7 @@ body {
 
 .join-content {
     font-family: 'Work Sans', sans-serif;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 140%;
     color: var(--color-text-black);
@@ -631,7 +631,7 @@ body {
     .hero-content,
     .section-content,
     .join-content {
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .hero-content p,
@@ -735,7 +735,7 @@ body {
     .hero-content,
     .section-content,
     .join-content {
-        font-size: 15px;
+        font-size: 12px;
     }
 }
 
