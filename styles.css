@@ -35,10 +35,14 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 40px 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
     gap: 10px;
     width: 100%;
     max-width: 65%;
+    min-width: 320px;
     height: 120px;
     flex: none;
     margin: 0 auto;
@@ -335,7 +339,8 @@ body {
     flex-direction: column;
     gap: 24px;
     align-items: center;
-    padding: 40px 40px 0;
+    padding: 0 40px;
+    padding-top: 40px;
     width: 100%;
     max-width: 65%;
     min-width: 320px;
