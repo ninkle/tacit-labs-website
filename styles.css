@@ -452,8 +452,7 @@ body {
 /* Large tablets and small desktops (768px - 1024px) */
 @media (max-width: 1024px) {
     .main-header {
-        max-width: 60%;
-        padding: 40px 0px;
+        padding: 24px 32px;
     }
 
     .hero-section,
@@ -668,6 +667,17 @@ body {
     .open-roles-link,
     .action-button {
         font-size: 11px;
+    }
+}
+
+/* Very large displays (beyond large MacBook Pro - 1920px+) */
+@media (min-width: 1920px) {
+    .hero-section,
+    .content-section,
+    .image-section,
+    .team-section,
+    .join-section {
+        max-width: 40%;
     }
 }
 
