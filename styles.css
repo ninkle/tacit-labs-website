@@ -38,7 +38,7 @@ body {
     padding: 40px 0px;
     gap: 10px;
     width: 100%;
-    max-width: 60%;
+    max-width: 50%;
     min-width: 320px;
     height: 120px;
     flex: none;
@@ -207,7 +207,7 @@ body {
     align-items: center;
     padding: 0;
     width: 100%;
-    max-width: 60%;
+    max-width: 50%;
     min-width: 320px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -249,7 +249,7 @@ body {
     align-items: center;
     padding: 0;
     width: 100%;
-    max-width: 60%;
+    max-width: 50%;
     min-width: 320px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -271,7 +271,7 @@ body {
     align-items: center;
     padding: 0;
     width: 100%;
-    max-width: 60%;
+    max-width: 50%;
     min-width: 320px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -313,7 +313,7 @@ body {
     align-items: center;
     padding: 0;
     width: 100%;
-    max-width: 60%;
+    max-width: 50%;
     min-width: 320px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -337,7 +337,7 @@ body {
     align-items: center;
     padding-top: 40px;
     width: 100%;
-    max-width: 60%;
+    max-width: 50%;
     min-width: 320px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -422,7 +422,6 @@ body {
     justify-content: center;
     gap: 10px;
     padding-top: 60px;
-    height: 84px;
     font-family: 'Work Sans', sans-serif;
     font-size: 12px;
     font-weight: 500;
@@ -450,7 +449,7 @@ body {
 /* Large tablets and small desktops (768px - 1024px) */
 @media (max-width: 1024px) {
     .main-header {
-        max-width: 70%;
+        max-width: 60%;
         padding: 40px 0px;
     }
 
@@ -459,7 +458,7 @@ body {
     .image-section,
     .team-section,
     .join-section {
-        max-width: 70%;
+        max-width: 60%;
         padding: 0;
     }
 }
@@ -471,10 +470,10 @@ body {
     }
 
     .main-header {
-        max-width: 80%;
+        max-width: 70%;
         padding: 32px 0px;
         height: auto;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: 16px;
     }
 
@@ -485,17 +484,16 @@ body {
     }
 
     .header-right {
-        width: 100%;
+        width: auto;
         height: auto;
         justify-content: flex-end;
-        flex: 1 1 100%;
+        flex: 1;
         min-width: 0;
-        margin-top: 8px;
     }
 
     .header-nav-wrapper {
-        width: 100%;
-        flex-wrap: wrap;
+        width: auto;
+        flex-wrap: nowrap;
         justify-content: flex-end;
         gap: 16px;
         min-width: 0;
@@ -512,7 +510,7 @@ body {
     .image-section,
     .team-section,
     .join-section {
-        max-width: 80%;
+        max-width: 70%;
         padding: 0;
     }
 
@@ -549,7 +547,7 @@ body {
     }
 
     .main-header {
-        max-width: 85%;
+        max-width: 75%;
         padding: 24px 0px;
         height: auto;
         gap: 12px;
@@ -606,13 +604,13 @@ body {
     .content-section,
     .team-section,
     .join-section {
-        max-width: 85%;
+        max-width: 75%;
         padding: 0;
         gap: 20px;
     }
 
     .image-section {
-        max-width: 85%;
+        max-width: 75%;
         padding: 0;
         gap: 8px;
     }
@@ -667,7 +665,7 @@ body {
     }
 
     .main-header {
-        max-width: 87%;
+        max-width: 77%;
         padding: 20px 0px;
         gap: 8px;
     }
@@ -706,7 +704,7 @@ body {
     .image-section,
     .team-section,
     .join-section {
-        max-width: 87%;
+        max-width: 77%;
         padding: 0;
         gap: 16px;
     }
