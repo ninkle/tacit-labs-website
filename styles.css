@@ -14,6 +14,31 @@
     --color-red: #ed6a5e;
     --color-yellow: #f4bf4f;
     --color-green: #61c554;
+    
+    /* Light mode colors (default) */
+    --bg-color: #fff;
+    --text-color: #000000;
+    --header-button-bg: #DADADA;
+    --header-button-hover: #9A9CFF;
+    --action-button-bg: #dadada;
+    --action-button-hover: #9A9CFF;
+    --mobile-menu-bg: #fff;
+    --mobile-menu-border: #e0e0e0;
+    --footer-text: #151515;
+    --hover-text-color: #000000;
+}
+
+[data-theme="dark"] {
+    --bg-color: #151515;
+    --text-color: #f1f1f1;
+    --header-button-bg: #2a2a2a;
+    --header-button-hover: #9A9CFF;
+    --action-button-bg: #2a2a2a;
+    --action-button-hover: #9A9CFF;
+    --mobile-menu-bg: #151515;
+    --mobile-menu-border: #2a2a2a;
+    --footer-text: #f1f1f1;
+    --hover-text-color: #f1f1f1;
 }
 
 html, body {
@@ -28,8 +53,8 @@ html, body {
 body {
     font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.5;
-    color: var(--color-text-black);
-    background-color: #fff;
+    color: var(--text-color);
+    background-color: var(--bg-color);
     font-size: 16px;
     font-weight: 400;
     width: 100%;
@@ -38,6 +63,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 p {
@@ -72,10 +98,11 @@ p {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
-    color: var(--color-black);
+    color: var(--text-color);
     letter-spacing: -0.01em;
     white-space: nowrap;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .header-text:hover {
@@ -87,11 +114,11 @@ p {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
-    color: #000000;
+    color: var(--text-color);
     letter-spacing: -0.01em;
     white-space: nowrap;
     text-decoration: none;
-    background: #DADADA;
+    background: var(--header-button-bg);
     padding: 8px 8px;
     gap: 10px;
     width: fit-content;
@@ -101,11 +128,12 @@ p {
     justify-content: center;
     align-items: center;
     flex: none;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .header-button:hover {
-    background-color: #93A887;
+    background-color: var(--header-button-hover);
+    color: var(--hover-text-color);
 }
 
 .header-center {
@@ -145,7 +173,7 @@ p {
     font-size: 24px;
     line-height: 1.5;
     letter-spacing: -0.24px;
-    color: #000000;
+    color: var(--text-color);
     width: auto;
     height: auto;
     flex: none;
@@ -157,6 +185,7 @@ p {
     display: flex;
     align-items: center;
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .header-right {
@@ -193,13 +222,14 @@ p {
     font-size: 14px;
     line-height: 1.5;
     letter-spacing: -0.01em;
-    color: #000000;
+    color: var(--text-color);
     text-decoration: none;
     white-space: nowrap;
     flex: none;
     flex-grow: 0;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color 0.2s ease;
 }
 
 .nav-link:hover {
@@ -224,7 +254,7 @@ p {
 .hamburger-line {
     width: 100%;
     height: 2px;
-    background-color: #000000;
+    background-color: var(--text-color);
     border-radius: 2px;
     transition: all 0.3s ease;
 }
@@ -241,6 +271,58 @@ p {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    margin-left: 16px;
+}
+
+.mobile-dark-toggle {
+    display: none;
+}
+
+.dark-mode-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-color);
+    transition: fill 0.8s ease;
+}
+
+.dark-mode-toggle .sun-icon {
+    display: none;
+}
+
+[data-theme="dark"] .dark-mode-toggle .sun-icon {
+    display: block;
+}
+
+[data-theme="dark"] .dark-mode-toggle .moon-icon {
+    display: none;
+}
+
+.dark-mode-toggle .moon-icon {
+    display: block;
+}
+
+/* Sun icon hover - illuminate to yellow */
+.dark-mode-toggle:hover .sun-icon {
+    fill: #FFD700;
+}
+
+/* Moon icon hover - turn moon-colored (blue-grey) */
+.dark-mode-toggle:hover .moon-icon {
+    fill: #94A3B8;
+}
+
 /* Mobile Menu */
 .mobile-menu {
     display: none;
@@ -249,7 +331,7 @@ p {
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #fff;
+    background-color: var(--mobile-menu-bg);
     padding: 0 20px;
     gap: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -257,7 +339,7 @@ p {
     overflow: hidden;
     max-height: 0;
     transform: translateY(-8px);
-    transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), padding 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), padding 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
     will-change: max-height, transform, padding;
     pointer-events: none;
 }
@@ -274,19 +356,20 @@ p {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
-    color: #000000;
+    color: var(--text-color);
     text-decoration: none;
     padding: 12px 0;
-    border-bottom: 1px solid #e0e0e0;
-    transition: color 0.2s ease;
+    border-bottom: 1px solid var(--mobile-menu-border);
+    transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
 
 .mobile-menu-item:last-child {
     border-bottom: none;
 }
 
+
 .mobile-menu-item:hover {
-    color: #93A887;
+    color: #9A9CFF;
 }
 
 body.menu-open {
@@ -325,10 +408,11 @@ body.menu-open {
     font-size: 32px;
     font-weight: 700;
     line-height: 1.5;
-    color: var(--color-text-black);
+    color: var(--text-color);
     letter-spacing: -0.4px;
     text-align: left;
     width: 100%;
+    transition: color 0.3s ease;
 }
 
 .hero-content {
@@ -336,8 +420,9 @@ body.menu-open {
     font-size: 21px;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--color-text-black);
+    color: var(--text-color);
     width: 100%;
+    transition: color 0.3s ease;
 }
 
 .hero-content p {
@@ -390,10 +475,11 @@ body.menu-open {
     font-size: 21px;
     font-weight: 700;
     line-height: 1.5;
-    color: var(--color-text-black);
+    color: var(--text-color);
     letter-spacing: -0.2px;
     width: 100%;
     text-align: left;
+    transition: color 0.3s ease;
 }
 
 .section-content {
@@ -401,8 +487,9 @@ body.menu-open {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--color-text-black);
+    color: var(--text-color);
     width: 100%;
+    transition: color 0.3s ease;
 }
 
 .section-content p {
@@ -432,9 +519,10 @@ body.menu-open {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--color-text-black);
+    color: var(--text-color);
     width: 100%;
     text-align: left;
+    transition: color 0.3s ease;
 }
 
 /* Join Section */
@@ -472,15 +560,17 @@ body.menu-open {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--color-text-black);
+    color: var(--text-color);
     width: 100%;
+    transition: color 0.3s ease;
 }
 
 .underline-link {
-    color: var(--color-text-black);
+    color: var(--text-color);
     text-decoration: underline;
     text-decoration-skip-ink: none;
     text-underline-position: from-font;
+    transition: color 0.2s ease;
 }
 
 .underline-link:hover {
@@ -492,20 +582,21 @@ body.menu-open {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
-    color: var(--color-text-black);
+    color: var(--text-color);
     text-decoration: none;
     letter-spacing: -0.12px;
     white-space: nowrap;
-    background-color: #dadada;
+    background-color: var(--action-button-bg);
     padding: 4px 8px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
 .action-button:hover {
-    background-color: #93A887;
+    background-color: var(--action-button-hover);
+    color: var(--hover-text-color);
 }
 
 .open-roles-link {
@@ -535,11 +626,12 @@ body.menu-open {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
-    color: var(--color-black);
+    color: var(--footer-text);
     letter-spacing: -0.12px;
     width: 100%;
     height: fit-content;
     box-sizing: border-box;
+    transition: color 0.3s ease;
 }
 
 .footer-left,
@@ -558,9 +650,10 @@ body.menu-open {
 }
 
 .footer-link {
-    color: var(--color-black);
+    color: var(--footer-text);
     text-decoration: none;
     font-size: 14px;
+    transition: color 0.2s ease;
 }
 
 .footer-link:hover {
@@ -622,6 +715,29 @@ body.menu-open {
 
     .header-right {
         display: none;
+    }
+
+    .desktop-dark-toggle {
+        display: none;
+    }
+
+    .mobile-dark-toggle {
+        display: flex;
+        order: 1;
+        position: absolute;
+        right: 68px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 0;
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+        z-index: 1001;
+    }
+
+    .mobile-dark-toggle svg {
+        width: 20px;
+        height: 20px;
     }
 
     .header-nav-wrapper {
@@ -696,6 +812,10 @@ body.menu-open {
 
     .hamburger-menu {
         right: 24px;
+    }
+
+    .mobile-dark-toggle {
+        right: 60px;
     }
 
     .header-text,
@@ -823,6 +943,10 @@ body.menu-open {
 
     .hamburger-menu {
         right: 20px;
+    }
+
+    .mobile-dark-toggle {
+        right: 56px;
     }
 
     .logo-container {
