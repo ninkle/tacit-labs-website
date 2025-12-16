@@ -707,10 +707,30 @@ body.menu-open {
         order: 0;
         flex-direction: row;
         align-items: center;
+        align-self: center;
+        justify-content: center;
         gap: 8px;
         position: static;
         transform: none;
         left: auto;
+        height: fit-content;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .header-center .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .header-center .company-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
     }
 
     .header-right {
