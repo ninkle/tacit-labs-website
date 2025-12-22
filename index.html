@@ -10,28 +10,182 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baskervville&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="logo">
-            <!-- Replace src with your logo path -->
-            <img src="Tacit Logo.png" alt="Logo">
-        </div>
-        <header>
-            <h1>Tacit Labs</h1>
-            <h2>By <a href="https://ninkle.github.io/" target="_blank">Nicole Fitzgerald</a> 
+    <main class="main-container">
+        <header class="main-header">
+            <div class="header-left">
+                <a href="https://www.linkedin.com/jobs/view/4323090449/" target="_blank" class="header-button">Become an expert</a>
+            </div>
+            <div class="header-center">
+                <div class="logo-container">
+                    <img src="assets/images/logo.png" alt="Tacit Labs Logo" class="logo-img">
+                </div>
+                <h1 class="company-name">Tacit Labs</h1>
+            </div>
+            <div class="header-right">
+                <div class="header-nav-wrapper">
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="mailto:hello@tacitlabs.co" class="nav-link">Join</a>
+                </div>
+                <button class="dark-mode-toggle desktop-dark-toggle" aria-label="Toggle dark mode" id="dark-mode-toggle">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10 10 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd"/>
+                    </svg>
+                </button>
+            </div>
+            <button class="dark-mode-toggle mobile-dark-toggle" aria-label="Toggle dark mode" id="mobile-dark-mode-toggle">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10 10 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd"/>
+                </svg>
+            </button>
+            <button class="hamburger-menu" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="mobile-menu" id="mobile-menu">
+                <a href="https://www.linkedin.com/jobs/view/4323090449/" target="_blank" class="mobile-menu-item">Become an expert</a>
+                <a href="#contact" class="mobile-menu-item">Contact</a>
+                <a href="mailto:hello@tacitlabs.co" class="mobile-menu-item">Join</a>
+            </div>
         </header>
-        <main>
-            <p>Tacit enables frontier labs to develop LLM capabilities for the life sciences by collecting high quality data on how science is done. </p>
 
-            <p>We imagine a future in which AI is a powerful tool for scientific discovery, capable of helping us reason through complex problems and driving optimal decision-making across discovery and development pipelines.</p>
-                
-            <p>Tacit collaborates with biotechs and academic labs to evaluate models on high-value, real-world tasks and works with frontier AI labs to systematically improve model performance on those tasks. Data collection will focus on outcome-verifiable, long-horizon planning and reasoning tasks to power the most critical functions in the life sciences. </p>
+        <section class="hero-section">
+            <h2 class="hero-title">Tacit is the data layer that powers AI for Science.</h2>
+            <div class="hero-content">
+                <p>We imagine a future in which AI is a powerful tool for scientific discovery, capable of helping us reason through complex problems and driving optimal decision-making across discovery and development pipelines.</p>
+                <p>Tacit collaborates with biotechs and academic labs to evaluate models on high-value, real-world tasks and works with frontier AI labs to systematically improve model performance on those tasks. Data collection will focus on outcome-verifiable, long-horizon planning and reasoning tasks to power the most critical functions in the life sciences</p>
+            </div>
+        </section>
 
-            <p>Tacit is supported by <a href="https://www.linkedin.com/in/alanagoyal/" target="_blank">Alana Goyal</a> at <a href="https://basecase.vc/" target="_blank">Basecase</a>, <a href="https://www.linkedin.com/in/terrencerohan/" target="_blank">Terrence Rohan</a> at <a href="https://otherwise.com/" target="_blank">Otherwise</a>, <a href="https://soleio.cv/" target="_blank">Soleio</a>, <a href="https://www.linkedin.com/in/thomas-wolf-a056857/">Thomas Wolf</a> (<a href="https://huggingface.co/" target="_blank">Hugging Face</a>), <a href="https://www.linkedin.com/in/jonathan-frankle/" target="_blank">Jonathan Frankle</a> (<a href="https://www.databricks.com/" target="_blank">MosaicML</a>), <a href="https://www.linkedin.com/in/matthew-leavitt/" target="_blank">Matthew Leavitt</a> (<a href="https://www.datology.ai/" target="_blank">Datology</a>), <a href="https://www.linkedin.com/in/danshipper/" target="_blank">Dan Shipper</a> (<a href="https://every.to/" target="_blank">Every</a>), and others.</p>
-        </main>
-    </div>
+        <section class="image-section">
+            <img src="assets/images/main-image.png" alt="Scientific laboratory scene" class="main-image">
+        </section>
+
+        <section class="content-section">
+            <h3 class="section-title">Powering the next frontier of scientific discovery</h3>
+            <div class="section-content">
+                <p>AI's greatest promise is advancing scientific discovery to transform what's possible for humanity.  We haven't achieved this yet because of data scarcity. We need to measure far more: protein dynamics, reaction pathways, quantum effects, biological networks.</p>
+                <p>But the real bottleneck isn't just data quantity, it's that we've never captured how science actually gets done. So much of what makes research work lives in scientists' heads, not in papers. The analysis pipeline someone cobbled together that everyone now depends on. The instinct to adjust that one parameter. The ability to recognize when noise is actually signal. Scientists build this knowledge over years—learning which tools to trust, which questions matter, which hunches to follow.</p>
+                <p>Think about what really happens in research. A scientist doesn't just run experiments—they develop hunches, build mental models, learn which tools to trust and when. They know when Tuesday's weird result connects to something they read six months ago. They can sense which hypotheses are worth pursuing. This is the operating system of scientific discovery, and we've never properly documented it.</p>
+                <p>That's the gap we're filling. Not just measuring more, but capturing the full stack: the workflows, the decision-making, the hard-won expertise. Teaching AI systems not just to process scientific data but to develop scientific judgment. To generate hypotheses that matter. To know which experiments reveal truth and which just burn resources.</p>
+                <p>The next scientific revolution won't come from one brilliant lab or agent. It will come from the collective intelligence of thousands of scientists, captured and scaled. We exist to make that possible.</p>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h3 class="section-title">Our team</h3>
+            <p class="team-content">Tacit is led by <a href="https://www.linkedin.com/in/nicole-fitzgerald/" target="_blank" class="underline-link">Nicole Fitzgerald</a> and supported by by <a href="https://www.linkedin.com/in/alanagoyal/" target="_blank" class="underline-link">Alana Goyal</a> at <a href="https://basecase.vc/" target="_blank" class="underline-link">Basecase</a>, <a href="https://www.linkedin.com/in/terrencerohan/" target="_blank" class="underline-link">Terrence Rohan</a> at <a href="https://otherwise.com/" target="_blank" class="underline-link">Otherwise</a>, <a href="https://soleio.cv/" target="_blank" class="underline-link">Soleio</a>, <a href="https://www.linkedin.com/in/thomas-wolf-a056857/" target="_blank" class="underline-link">Thomas Wolf</a> (<a href="https://huggingface.co/" target="_blank" class="underline-link">Hugging Face</a>), <a href="https://www.linkedin.com/in/jonathan-frankle/" target="_blank" class="underline-link">Jonathan Frankle</a> (<a href="https://www.databricks.com/" target="_blank" class="underline-link">MosaicML</a>), <a href="https://www.linkedin.com/in/matthew-leavitt/" target="_blank" class="underline-link">Matthew Leavitt</a> (<a href="https://www.datology.ai/" target="_blank" class="underline-link">Datology</a>), <a href="https://www.linkedin.com/in/danshipper/" target="_blank" class="underline-link">Dan Shipper</a> (<a href="https://every.to/" target="_blank" class="underline-link">Every</a>), and others.</p>
+        </section>
+
+        <section class="join-section" id="join">
+            <div class="join-columns">
+                <div class="join-column">
+                    <h3 class="section-title">Partner with us</h3>
+                    <p class="join-content">For frontier labs looking for high quality data at exceptional speed and delivery. Contact us for a sample dataset.</p>
+                    <a href="mailto:hello@tacitlabs.co" class="action-button">Contact us</a>
+                </div>
+                <div class="join-column">
+                    <h3 class="section-title">Join us</h3>
+                    <p class="join-content">Come build the future with us! We are always looking to meet people who share the joint vision of accelerating scientific discovery.</p>
+                    <a href="mailto:hello@tacitlabs.co" class="action-button">Contact us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const body = document.body;
+
+        function setMenuOpen(isOpen) {
+            hamburger.classList.toggle('active', isOpen);
+            mobileMenu.classList.toggle('active', isOpen);
+            body.classList.toggle('menu-open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
+
+        hamburger.addEventListener('click', () => {
+            const willOpen = !hamburger.classList.contains('active');
+            setMenuOpen(willOpen);
+        });
+
+        // Close menu when clicking on a menu item
+        const menuItems = document.querySelectorAll('.mobile-menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                setMenuOpen(false);
+            });
+        });
+
+        // Ensure state is correct on initial load
+        setMenuOpen(false);
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const html = document.documentElement;
+
+        // Function to get theme preference
+        function getThemePreference() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                return savedTheme;
+            }
+            // Check system preference
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        // Function to set theme
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        // Initialize theme on page load
+        const currentTheme = getThemePreference();
+        setTheme(currentTheme);
+
+        // Toggle theme on button click
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        }
+
+        darkModeToggle.addEventListener('click', toggleTheme);
+
+        // Mobile dark mode toggle
+        const mobileDarkModeToggle = document.getElementById('mobile-dark-mode-toggle');
+        if (mobileDarkModeToggle) {
+            mobileDarkModeToggle.addEventListener('click', toggleTheme);
+        }
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            // Only apply system preference if user hasn't manually set a preference
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    </script>
+    <footer class="main-footer">
+        <div class="footer-left">
+            <p>© 2025 Tacit Labs Inc.</p>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:hello@tacitlabs.co" class="footer-link">Contact</a>
+            <a href="mailto:hello@tacitlabs.co" class="footer-link">Join</a>
+        </div>
+    </footer>
 </body>
-</html> 
+</html>
