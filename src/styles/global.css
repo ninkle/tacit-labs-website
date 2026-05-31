@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* Local font: Merlo Original */
+@font-face {
+    font-family: "Merlo";
+    src: url("../fonts/Merlo-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Merlo";
+    src: url("../fonts/Merlo-RegularItalic.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Expose fonts as Tailwind utilities: font-display (Merlo) and font-mono (Roboto Mono) */
+@theme inline {
+    --font-display: "Merlo", ui-serif, serif;
+    --font-mono: "Roboto Mono", ui-monospace, monospace;
+    --color-offwhite: #f5f5f5;
+    --spacing-gutter: clamp(0.375rem, 0.2233rem + 0.6742vw, 0.9375rem);
+    --text-sm: clamp(0.875rem, 0.8076rem + 0.2996vw, 1.125rem);
+    --text-md: clamp(1.125rem, 0.9565rem + 0.7491vw, 1.75rem);
+}

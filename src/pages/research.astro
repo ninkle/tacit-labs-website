@@ -1,0 +1,145 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// One entry per paper. Hovering a title reveals its synopsis + authors below.
+const papers = [
+    {
+        id: "ih-challenge",
+        title: "IH-Challenge: A Training Dataset to Improve Instruction Hierarchy on Frontier LLMs",
+        date: "June 2, 2026",
+        synopsis:
+            "IH failures can be confounded with instruction-following failures, conflicts can be nuanced, and models can learn shortcuts such as overrefusing. We introduce IH-Challenge, a reinforcement learning training dataset, to address these difficulties. Fine-tuning GPT-5-Mini on IH-Challenge with online adversarial example generation improves IH robustness by +10.0% on average across 16 in-distribution, out-of-distribution, and human red-teaming benchmarks (84.1% to 94.1%),",
+        authors:
+            "Chuan Guo, Juan Felipe Ceron Uribe, Sicheng Zhu, Christopher A. Choquette-Choo, Steph Lin, Nikhil Kandpal, Milad Nasr, Rai (Michael Pokorny), Sam Toyer, Miles Wang, Yaodong Yu, Alex Beutel, Kai Xiao",
+    },
+];
+---
+
+<Layout title="Tacit Labs">
+    <main
+        class="p-gutter flex flex-col justify-between items-start h-screen max-h-dvh relative overflow-hidden"
+    >
+        <div class="flex flex-col justify-center w-full grow">
+            <div class="grid grid-cols-16 gap-gutter w-full">
+                <div class="col-span-16">
+                    <h3
+                        class="uppercase font-mono font-light text-xs tracking-normal leading-normal"
+                    >
+                        Research
+                    </h3>
+                </div>
+                <div
+                    id="research-titles"
+                    class="flex flex-col gap-0 col-span-16 w-full"
+                >
+                    {
+                        papers.map((p) => (
+                            <div
+                                data-title
+                                data-target={p.id}
+                                class="grid grid-cols-16 gap-gutter w-full cursor-pointer transition-opacity duration-200"
+                            >
+                                <p class="col-span-12 flex font-display text-md">
+                                    {p.title}
+                                </p>
+                                <div class="col-span-4 w-full text-right flex flex-row justify-end font-display text-md">
+                                    {p.date}
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-16 gap-gutter w-full items-start">
+            <div class="col-span-6 col-start-1">
+                <h3
+                    data-research-header
+                    class="uppercase font-mono font-light text-xs tracking-normal leading-normal opacity-0 invisible transition-opacity duration-200"
+                >
+                    Synopsis
+                </h3>
+            </div>
+            <div class="col-span-6">
+                <h3
+                    data-research-header
+                    class="uppercase font-mono font-light text-xs tracking-normal leading-normal opacity-0 invisible transition-opacity duration-200"
+                >
+                    Authors
+                </h3>
+            </div>
+
+            {/* Synopsis panels stacked in one cell so the row height is the
+                tallest panel — no layout shift when toggling visibility. */}
+            <div class="col-span-6 col-start-1 grid">
+                {
+                    papers.map((p) => (
+                        <p
+                            data-synopsis
+                            data-id={p.id}
+                            class="col-start-1 row-start-1 font-display text-sm tracking-normal leading-normal opacity-0 invisible transition-opacity duration-200"
+                        >
+                            {p.synopsis}
+                        </p>
+                    ))
+                }
+            </div>
+
+            {/* Authors panels stacked the same way. */}
+            <div class="col-span-6 grid">
+                {
+                    papers.map((p) => (
+                        <p
+                            data-authors
+                            data-id={p.id}
+                            class="col-start-1 row-start-1 font-display text-sm tracking-normal leading-normal opacity-0 invisible transition-opacity duration-200"
+                        >
+                            {p.authors}
+                        </p>
+                    ))
+                }
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<script>
+    const root = document.getElementById("research-titles");
+    const titles = root?.querySelectorAll<HTMLElement>("[data-title]");
+    // Every revealable element (both synopsis and author panels).
+    const panels = document.querySelectorAll<HTMLElement>(
+        "[data-synopsis], [data-authors]",
+    );
+    // The "SYNOPSIS" / "AUTHORS" column headers, shown only while hovering.
+    const headers = document.querySelectorAll<HTMLElement>(
+        "[data-research-header]",
+    );
+
+    function show(id: string | null) {
+        panels.forEach((p) => {
+            const active = p.dataset.id === id;
+            p.classList.toggle("opacity-0", !active);
+            p.classList.toggle("invisible", !active);
+        });
+        headers.forEach((h) => h.classList.remove("opacity-0", "invisible"));
+        // Dim the titles that aren't active.
+        titles?.forEach((t) =>
+            t.classList.toggle("opacity-40", t.dataset.target !== id),
+        );
+    }
+
+    function hideAll() {
+        panels.forEach((p) => p.classList.add("opacity-0", "invisible"));
+        headers.forEach((h) => h.classList.add("opacity-0", "invisible"));
+        titles?.forEach((t) => t.classList.remove("opacity-40"));
+    }
+
+    // Hovering a title reveals its synopsis + authors (and switches between).
+    titles?.forEach((t) => {
+        t.addEventListener("mouseenter", () => show(t.dataset.target ?? null));
+    });
+
+    // Leaving the list of titles hides everything. Moving between titles stays
+    // inside `root`, so it doesn't fire.
+    root?.addEventListener("mouseleave", hideAll);
+</script>

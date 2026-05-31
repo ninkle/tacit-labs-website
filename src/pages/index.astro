@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Picture } from "astro:assets";
+import ascii from "../images/tacit-ascii.png";
+---
+
+<Layout title="Tacit Labs">
+    <main
+        class="p-gutter gap-gutter grid grid-cols-16 h-screen max-h-dvh relative overflow-hidden"
+    >
+        <div
+            class="col-span-8 min-[1695px]:col-span-7 flex flex-col grow justify-between mt-10"
+        >
+            <p
+                class="font-mono font-light text-sm tracking-normal leading-normal"
+            >
+                Tacit enables frontier labs to develop LLM capabilities for the
+                life sciences by collecting high quality data on how science is
+                done.<br /><br />
+
+                We imagine a future in which AI is a powerful tool for
+                scientific discovery, capable of helping us reason through
+                complex problems and driving optimal decision-making across
+                discovery and development pipelines.<br /><br />
+
+                Collaborating with biotechs and academic labs, we evaluate
+                models on high-value, real-world tasks and works with frontier
+                AI labs to systematically improve model performance on those
+                tasks. Data collection will focus on outcome-verifiable,
+                long-horizon planning and reasoning tasks to power the most
+                critical functions in the life sciences.
+            </p>
+            <p
+                class="font-mono font-light text-sm tracking-normal leading-normal"
+            >
+                Tacit is supported by <a
+                    href="https://www.linkedin.com/in/alanagoyal/"
+                    target="_blank"
+                    class="underline">Alana Goyal</a
+                > at <a
+                    href="https://basecase.vc/"
+                    target="_blank"
+                    class="underline">Basecase</a
+                >, <a
+                    href="https://www.linkedin.com/in/terrencerohan/"
+                    target="_blank"
+                    class="underline">Terrence Rohan</a
+                > at <a
+                    href="https://otherwise.com/"
+                    target="_blank"
+                    class="underline">Otherwise</a
+                >, <a
+                    href="https://soleio.cv/"
+                    target="_blank"
+                    class="underline">Soleio</a
+                >, <a
+                    href="https://www.linkedin.com/in/thomas-wolf-a056857/"
+                    class="underline">Thomas Wolf</a
+                > (<a
+                    href="https://huggingface.co/"
+                    target="_blank"
+                    class="underline">Hugging Face</a
+                >), <a
+                    href="https://www.linkedin.com/in/jonathan-frankle/"
+                    target="_blank"
+                    class="underline">Jonathan Frankle</a
+                > (<a
+                    href="https://www.databricks.com/"
+                    target="_blank"
+                    class="underline">MosaicML</a
+                >), <a
+                    href="https://www.linkedin.com/in/matthew-leavitt/"
+                    target="_blank"
+                    class="underline">Matthew Leavitt</a
+                > (<a
+                    href="https://www.datology.ai/"
+                    target="_blank"
+                    class="underline">Datology</a
+                >), <a
+                    href="https://www.linkedin.com/in/danshipper/"
+                    target="_blank"
+                    class="underline">Dan Shipper</a
+                > (<a href="https://every.to/" target="_blank" class="underline"
+                    >Every</a
+                >), and others.
+            </p>
+        </div>
+
+        <div
+            class="absolute bottom-0 right-0 translate-x-[20%] translate-y-[20%] opacity-30 -z-10 pointer-events-none"
+        >
+            <img
+                src={ascii.src}
+                alt="Tacit Labs ASCII"
+                class="h-[clamp(32rem,50vw+30vh,96rem)] w-auto max-w-none"
+            />
+        </div>
+    </main>
+</Layout>
