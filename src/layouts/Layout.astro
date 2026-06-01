@@ -26,38 +26,68 @@ const { title = "Tacit Labs" } = Astro.props;
         >
             <a
                 href="/"
-                class="font-display text-[1.5rem] tracking-normal leading-normal col-span-4"
+                class="font-display text-[1.5rem] tracking-normal leading-normal min-[810px]:col-span-4 col-span-6"
                 >Tacit Labs</a
             >
             <div
-                class="flex flex-row justify-end gap-20 col-span-4 col-start-13"
+                class="hidden min-[810px]:flex flex-row justify-end gap-20 col-span-4 col-start-13 font-light text-xs font-mono tracking-normal leading-normal"
             >
-                <a
-                    href="/team"
-                    class="font-mono font-light text-[0.875rem] tracking-normal leading-normal"
-                >
-                    TEAM
-                </a>
-                <a
-                    href="/research"
-                    class="font-mono font-light text-[0.875rem] tracking-normal leading-normal"
-                >
-                    RESEARCH
-                </a>
-                <a
-                    href="/"
-                    class="font-mono font-light text-[0.875rem] tracking-normal leading-normal"
-                >
-                    BLOG
-                </a>
-                <a
-                    href="/"
-                    class="font-mono font-light text-[0.875rem] tracking-normal leading-normal"
-                >
-                    CONTACT
-                </a>
+                <a href="/team"> TEAM </a>
+                <a href="/research"> RESEARCH </a>
+                <a href="/"> BLOG </a>
+                <a href="/"> CONTACT </a>
             </div>
+
+            <button
+                type="button"
+                id="menu-toggle"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+                class="col-span-4 col-start-13 flex justify-end font-mono font-light text-xs tracking-normal leading-normal cursor-pointer z-50 min-[810px]:hidden"
+            >
+                MENU
+            </button>
         </nav>
+
+        <!-- Mobile menu: slides down 200px from the top below 810px. -->
+        <div
+            id="mobile-menu"
+            data-open="false"
+            class="menu-panel fixed top-0 left-gutter right-gutter h-[200px] border-b border-[#C4C4C4] bg-offwhite z-40 flex flex-col items-center justify-center min-[810px]:hidden"
+        >
+            <div
+                class="flex flex-col items-center gap-0 font-mono font-light text-xs tracking-normal leading-normal"
+            >
+                <a href="/team">TEAM</a>
+                <a href="/research">RESEARCH</a>
+                <a href="/">BLOG</a>
+                <a href="/">CONTACT</a>
+            </div>
+        </div>
+
         <slot />
+
+        <script>
+            const toggle = document.getElementById("menu-toggle");
+            const menu = document.getElementById("mobile-menu");
+
+            function setOpen(open: boolean) {
+                if (menu) menu.dataset.open = String(open);
+                toggle?.setAttribute("aria-expanded", String(open));
+            }
+
+            toggle?.addEventListener("click", () => {
+                setOpen(menu?.dataset.open !== "true");
+            });
+
+            // Close on Escape, and when the viewport grows past the breakpoint
+            // (so it can't stay open behind the desktop nav).
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") setOpen(false);
+            });
+            window.addEventListener("resize", () => {
+                if (window.innerWidth >= 810) setOpen(false);
+            });
+        </script>
     </body>
 </html>
