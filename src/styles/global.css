@@ -23,8 +23,11 @@
     --font-mono: "Roboto Mono", ui-monospace, monospace;
     --color-offwhite: #f5f5f5;
     --spacing-gutter: clamp(0.375rem, 0.2233rem + 0.6742vw, 0.9375rem);
-    --text-sm: clamp(0.8125rem, 0.7358rem + 0.3409vw, 1rem);
-    --text-md: clamp(1.125rem, 0.9716rem + 0.6818vw, 1.5rem);
+    --text-xs: 9px;
+    --text-sm: 11px;
+    --text-md: 14px;
+    --text-lg: 24px;
+    --grid-template-columns-16: repeat(16, minmax(0, 1fr));
 }
 
 /* Mobile menu slide. Using an explicit translate3d (not Tailwind's `translate`

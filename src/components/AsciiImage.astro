@@ -1,0 +1,242 @@
+---
+import path from "node:path";
+import sharp from "sharp";
+
+interface Props {
+    /** Image path relative to the project root, e.g. "src/images/Vector.png". */
+    src: string;
+    /** Number of character columns the image is sampled into. */
+    cols?: number;
+    /** Glyph cell width / height ratio for the monospace font. */
+    charAspect?: number;
+    /** Minimum ink (0–1) for a cell to render a character. */
+    threshold?: number;
+    /** Glyph colour. */
+    color?: string;
+    /** Repel radius around the cursor, in CSS pixels. */
+    radius?: number;
+    /** Extra classes for the wrapper (sizing / positioning / opacity). */
+    class?: string;
+}
+
+const {
+    src,
+    cols = 400,
+    charAspect = 1,
+    threshold = 0.1,
+    color = "#232323",
+    radius = 100,
+    class: className = "",
+} = Astro.props;
+
+// Light -> dense ramp; index 0 (space) is treated as empty.
+const ramp = " .:-=+*#%@";
+
+const absPath = path.resolve(process.cwd(), src);
+const meta = await sharp(absPath).metadata();
+const imgW = meta.width ?? 1;
+const imgH = meta.height ?? 1;
+
+// Keep the rendered ascii undistorted: glyph cells are taller than wide, so we
+// need fewer rows than a square sampling would give.
+const rows = Math.max(1, Math.round((cols * charAspect * imgH) / imgW));
+
+const { data } = await sharp(absPath)
+    .resize(cols, rows, { fit: "fill" })
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+
+const lines: string[] = [];
+for (let r = 0; r < rows; r++) {
+    let line = "";
+    for (let c = 0; c < cols; c++) {
+        const o = (r * cols + c) * 4;
+        const alpha = data[o + 3] / 255;
+        const lum =
+            (0.299 * data[o] + 0.587 * data[o + 1] + 0.114 * data[o + 2]) / 255;
+        const ink = alpha * (1 - lum);
+        if (ink > threshold) {
+            const idx = Math.max(1, Math.min(9, Math.round(ink * 9)));
+            line += ramp[idx];
+        } else {
+            line += " ";
+        }
+    }
+    lines.push(line);
+}
+const grid = lines.join("\n");
+const aspectRatio = `${imgW} / ${imgH}`;
+---
+
+<div
+    data-ascii-image
+    data-cols={cols}
+    data-rows={rows}
+    data-char-aspect={charAspect}
+    data-color={color}
+    data-radius={radius}
+    class={className}
+    style={`aspect-ratio:${aspectRatio}`}
+>
+    <canvas data-ascii-canvas class="block w-full h-full"></canvas>
+    <script
+        type="application/json"
+        data-ascii-cells
+        set:html={JSON.stringify(grid)}
+    />
+</div>
+
+<script>
+    type Init = (root: HTMLElement) => void;
+
+    const initAscii: Init = (root) => {
+        const canvas = root.querySelector<HTMLCanvasElement>(
+            "[data-ascii-canvas]",
+        );
+        const dataEl = root.querySelector<HTMLElement>("[data-ascii-cells]");
+        const ctx = canvas?.getContext("2d");
+        if (!canvas || !dataEl || !ctx) return;
+
+        const cols = Number(root.dataset.cols) || 1;
+        const rows = Number(root.dataset.rows) || 1;
+        const charAspect = Number(root.dataset.charAspect) || 0.6;
+        const color = root.dataset.color || "#232323";
+        const radius = Number(root.dataset.radius) || 40;
+
+        const grid: string = JSON.parse(dataEl.textContent || '""');
+        const chars: string[] = [];
+        const cc: number[] = [];
+        const cr: number[] = [];
+        grid.split("\n").forEach((line, r) => {
+            for (let c = 0; c < line.length; c++) {
+                if (line[c] !== " ") {
+                    chars.push(line[c]);
+                    cc.push(c);
+                    cr.push(r);
+                }
+            }
+        });
+
+        const n = chars.length;
+        const homeX = new Float32Array(n);
+        const homeY = new Float32Array(n);
+        const curX = new Float32Array(n);
+        const curY = new Float32Array(n);
+
+        let cssW = 0;
+        let cssH = 0;
+        let cellW = 0;
+        let cellH = 0;
+        let dpr = 1;
+        let fontPx = 0;
+
+        let pointerActive = false;
+        let px = 0;
+        let py = 0;
+        let running = false;
+
+        const draw = () => {
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, cssW, cssH);
+            ctx.fillStyle = color;
+            ctx.font = `${fontPx}px ui-monospace, "Roboto Mono", monospace`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            for (let i = 0; i < n; i++)
+                ctx.fillText(chars[i], curX[i], curY[i]);
+        };
+
+        const layout = () => {
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) return;
+            cssW = rect.width;
+            cssH = rect.height;
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.round(cssW * dpr);
+            canvas.height = Math.round(cssH * dpr);
+            cellW = cssW / cols;
+            cellH = cssH / rows;
+            // Fit the glyph to whichever dimension is tighter so characters
+            // never overlap, even if the box aspect doesn't match the grid.
+            fontPx = Math.min(cellH, cellW / charAspect);
+            for (let i = 0; i < n; i++) {
+                const hx = (cc[i] + 0.5) * cellW;
+                const hy = (cr[i] + 0.5) * cellH;
+                homeX[i] = hx;
+                homeY[i] = hy;
+                // Snap to home on (re)layout so the grid renders at full size
+                // immediately rather than easing in on first interaction.
+                if (!pointerActive) {
+                    curX[i] = hx;
+                    curY[i] = hy;
+                }
+            }
+            draw();
+        };
+
+        const tick = () => {
+            const r2 = radius * radius;
+            let moving = false;
+            for (let i = 0; i < n; i++) {
+                let tx = homeX[i];
+                let ty = homeY[i];
+                if (pointerActive) {
+                    const dx = homeX[i] - px;
+                    const dy = homeY[i] - py;
+                    const d2 = dx * dx + dy * dy;
+                    if (d2 < r2) {
+                        const d = Math.sqrt(d2) || 0.0001;
+                        const push = radius - d;
+                        // Quantize the radial push to whole columns/rows so the
+                        // characters stay on the grid — the rows and columns
+                        // shift outward in cell-steps to open the bubble.
+                        const offCols = Math.round(((dx / d) * push) / cellW);
+                        const offRows = Math.round(((dy / d) * push) / cellH);
+                        tx = homeX[i] + offCols * cellW;
+                        ty = homeY[i] + offRows * cellH;
+                    }
+                }
+                // Snap straight to the grid target — no easing.
+                if (curX[i] !== tx || curY[i] !== ty) {
+                    moving = true;
+                    curX[i] = tx;
+                    curY[i] = ty;
+                }
+            }
+            if (moving) {
+                draw();
+                requestAnimationFrame(tick);
+            } else {
+                running = false;
+            }
+        };
+
+        const start = () => {
+            if (!running) {
+                running = true;
+                requestAnimationFrame(tick);
+            }
+        };
+
+        canvas.addEventListener("pointermove", (e) => {
+            const rect = canvas.getBoundingClientRect();
+            px = ((e.clientX - rect.left) / rect.width) * cssW;
+            py = ((e.clientY - rect.top) / rect.height) * cssH;
+            pointerActive = true;
+            start();
+        });
+        canvas.addEventListener("pointerleave", () => {
+            pointerActive = false;
+            start();
+        });
+
+        new ResizeObserver(layout).observe(canvas);
+        layout();
+        document.fonts?.ready.then(layout);
+    };
+
+    document
+        .querySelectorAll<HTMLElement>("[data-ascii-image]")
+        .forEach(initAscii);
+</script>

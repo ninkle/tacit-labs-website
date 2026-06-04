@@ -1,0 +1,81 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Picture } from "astro:assets";
+import blog001 from "../images/blog001.jpg";
+---
+
+<Layout title="Tacit Labs">
+    <main class="p-gutter flex flex-col min-h-dvh">
+        <div class="grid gap-gutter grid-cols-12 mt-24 min-[810px]:mt-50">
+            <div
+                class="col-span-12 min-[640px]:col-span-8 min-[640px]:col-start-3 min-[810px]:col-span-6 min-[810px]:col-start-4 min-[1200px]:col-span-4 min-[1200px]:col-start-5 flex flex-col"
+            >
+                <div class="flex flex-col gap-6 text-center">
+                    <h1 class="font-display text-lg leading-[130%]">
+                        Introducing<br />
+                        Tacit Labs
+                    </h1>
+                    <p class="font-mono font-light uppercase text-xs">
+                        by Nicole Fitzgerald & Anne Marie Droste
+                    </p>
+                </div>
+                <div class="flex flex-col gap-gutter">
+                    <div class="aspect-8/5 w-full h-auto overflow-clip p-8">
+                        <Picture
+                            src={blog001}
+                            alt="Headshot"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                </div>
+                <p
+                    class="text-[13px] tracking-[1%] font-display leading-[150%] px-gutter min-[810px]:px-0 pb-30 min-[810px]:pb-50"
+                >
+                    Tacit is an applied research lab at the intersection of AI
+                    and the life sciences.<br /><br />
+
+                    Biology offers greater potential to improve human life than
+                    any other scientific domain. It's also the most complex —
+                    demanding measurement, integration, and reasoning across
+                    multiple scales, with hundreds of variables interacting
+                    simultaneously within systems we still only partially
+                    understand.<br /><br />
+
+                    Nowhere is that complexity more apparent, nor the stakes
+                    more high, than in drug discovery and development. From
+                    identifying targets from human biology, to designing and
+                    validating interventions, conferring the right biophysical
+                    and pharmacokinetic properties, and ensuring that the result
+                    is reliable and reproducible at scale — every step requires
+                    solving a chain of deeply interdependent problems over
+                    noisy, heterogeneous data. It is, in many ways, the hardest
+                    thing biology asks us to do.<br /><br />
+
+                    A snapshot of the current moment in time: general-purpose
+                    reasoning models are quickly approaching parity with the
+                    best human scientists; computational chemistry models are
+                    dramatically compressing research timelines by virtualizing
+                    and scaling experimental workflows; and sequencing costs are
+                    declining faster than Moore’s Law, enabling an abundance of
+                    biological data at increasingly granular resolution. We are,
+                    in other words, sitting at the advent of a golden age of
+                    scientific progress. In the limit, these forces will
+                    compress drug discovery to a function of data, compute, and
+                    token spend. The shape of company that will bring the next
+                    generation of drugs to market will look fundamentally
+                    different as a result — model-centric, massively
+                    parallelized, and increasingly autonomous. Tacit is working
+                    across the ecosystem to design the blueprint for this kind
+                    of company. We are a team of researchers, engineers,
+                    scientists, and operators who have trained frontier language
+                    models, designed and scaled experimental platforms, and
+                    brought drugs to the clinic.<br /><br />
+
+                    We are actively <span
+                        ><a class="underline" href="/team">hiring.</a></span
+                    >
+                </p>
+            </div>
+        </div>
+    </main>
+</Layout>

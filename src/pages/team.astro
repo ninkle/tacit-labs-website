@@ -3,206 +3,179 @@ import Layout from "../layouts/Layout.astro";
 import { Picture } from "astro:assets";
 import headshot from "../images/headshot.jpg";
 
-// One entry per team member. `bio` is an array of paragraphs.
-// Swap `image` per-person once you have more headshots (import each at the top).
-const members = [
-    {
-        id: "nicole-fitzgerald",
-        name: "Nicole Fitzgerald",
-        image: headshot,
-        bio: [
-            "An AI researcher and entrepreneur who most recently co-founded Alpaca in August 2022, an AI-powered design tools company that was acquired by Captions in October 2024.",
-            "Prior to Alpaca, Fitzgerald served as a research scientist at MosaicML in 2022 and as a research engineer at Microsoft Research Montreal from 2018 to 2021. Her earlier experience includes graduate studies at the Montreal Institute for Learning Algorithms (MILA) at Université de Montréal, where she focused on the empirical study of deep neural networks, particularly the dynamics of learning at scale and large language models.",
-        ],
-        links: {
-            github: "https://github.com/nicole-fitzgerald",
-            linkedin: "https://github.com/nicole-fitzgerald",
-            x: "https://github.com/nicole-fitzgerald",
-        },
-    },
-    {
-        id: "james-carter",
-        name: "James Carter",
-        image: headshot,
-        bio: ["Add a short bio for James Carter here."],
-        links: { github: "#", linkedin: "#", x: "#" },
-    },
-    {
-        id: "sarah-mitchell",
-        name: "Sarah Mitchell",
-        image: headshot,
-        bio: ["Add a short bio for Sarah Mitchell here."],
-        links: { github: "#", linkedin: "#", x: "#" },
-    },
-    {
-        id: "david-hughes",
-        name: "David Hughes",
-        image: headshot,
-        bio: ["Add a short bio for David Hughes here."],
-        links: { github: "#", linkedin: "#", x: "#" },
-    },
-    {
-        id: "michael-turner",
-        name: "Michael Turner",
-        image: headshot,
-        bio: ["Add a short bio for Michael Turner here."],
-        links: { github: "#", linkedin: "#", x: "#" },
-    },
-    {
-        id: "laura-bennett",
-        name: "Laura Bennett",
-        image: headshot,
-        bio: ["Add a short bio for Laura Bennett here."],
-        links: { github: "#", linkedin: "#", x: "#" },
-    },
-    {
-        id: "daniel-foster",
-        name: "Daniel Foster",
-        image: headshot,
-        bio: ["Add a short bio for Daniel Foster here."],
-        links: { github: "#", linkedin: "#", x: "#" },
-    },
-    {
-        id: "rachel-coleman",
-        name: "Rachel Coleman",
-        image: headshot,
-        bio: ["Add a short bio for Rachel Coleman here."],
-        links: { github: "#", linkedin: "#", x: "#" },
-    },
-    {
-        id: "thomas-hargrove",
-        name: "Thomas Hargrove",
-        image: headshot,
-        bio: ["Add a short bio for Thomas Hargrove here."],
-        links: { github: "#", linkedin: "#", x: "#" },
-    },
-];
+import annemarie from "../images/annemarie.jpg";
+import katie from "../images/katie.jpg";
+import max from "../images/max.jpg";
+import nicole from "../images/nicole.jpg";
 ---
 
 <Layout title="Tacit Labs">
     <main class="p-gutter flex flex-col min-h-dvh min-[810px]:h-screen">
-        <div class="grid grid-cols-16 w-full gap-gutter grow">
-            <div
-                id="team-interactive"
-                class="col-span-16 self-center hidden min-[810px]:grid grid-cols-13 gap-gutter py-5 items-center"
-            >
+        <div class="flex flex-col justify-center w-full grow pt-6.5 pb-6.5">
+            <div class="grid grid-cols-8 min-[810px]:grid-cols-16 gap-gutter">
                 <div
-                    class="col-span-3 xl:col-span-4 flex flex-col justify-center items-start font-display text-md tracking-normal leading-normal"
+                    data-team
+                    class="col-span-8 grid grid-cols-2 gap-gutter min-[810px]:col-span-12 min-[810px]:col-start-3 min-[810px]:flex min-[810px]:flex-row min-[810px]:gap-1 min-[1200px]:col-span-8 min-[1200px]:col-start-5"
                 >
-                    {
-                        members.map((m) => (
-                            <button
-                                type="button"
-                                data-name
-                                data-target={m.id}
-                                class="text-left cursor-pointer transition-opacity duration-200"
-                            >
-                                {m.name}
-                            </button>
-                        ))
-                    }
-                </div>
-                <div class="col-span-9 xl:col-span-8 grid">
-                    {
-                        members.map((m) => (
-                            <div
-                                data-panel
-                                data-id={m.id}
-                                class="col-start-1 row-start-1 grid grid-cols-10 xl:grid-cols-8 gap-gutter items-start opacity-0 invisible transition-opacity duration-200"
-                            >
-                                <div class="col-span-3 xl:col-span-2 flex flex-col justify-center">
-                                    <Picture src={m.image} alt={m.name} />
-                                </div>
-                                <div class="col-span-1 flex flex-col justify-center" />
-                                <div class="col-span-6 lg:col-span-4 flex flex-col justify-center">
-                                    <div class="font-display text-sm tracking-wide leading-normal pb-gutter space-y-4">
-                                        {m.bio.map((par) => (
-                                            <p>{par}</p>
-                                        ))}
-                                    </div>
-                                    <div class="flex flex-row gap-20 text-xs font-mono font-light pt-gutter">
-                                        <a href={m.links.github}>GITHUB</a>
-                                        <a href={m.links.linkedin}>LINKEDIN</a>
-                                        <a href={m.links.x}>X.COM</a>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-
-            <!-- Accordion: shown below 810px in place of the hover component. -->
-            <div
-                id="team-accordion"
-                class="col-span-16 self-start flex flex-col min-[810px]:hidden pb-gutter"
-            >
-                {
-                    members.map((m) => (
-                        <div class="border-t border-black/20 last:border-b">
-                            <button
-                                type="button"
-                                data-acc-trigger
-                                data-target={m.id}
-                                aria-expanded="false"
-                                class="flex w-full cursor-pointer items-center justify-between gap-gutter py-gutter text-left font-display text-md leading-normal"
-                            >
-                                <span>{m.name}</span>
-                                <span
-                                    data-acc-icon
-                                    aria-hidden="true"
-                                    class="grid size-[0.8em] shrink-0 place-items-center"
+                    <div
+                        data-card
+                        class="flex flex-col justify-start grow gap-1.5"
+                    >
+                        <div class="aspect-5/7">
+                            <Picture
+                                src={nicole}
+                                alt="Nicole Fitzgerald"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div class="flex flex-col items-start gap-3 text-left">
+                            <div class="flex flex-col gap-0 w-full">
+                                <h3
+                                    data-name
+                                    class="font-display text-sm self-center max-[809px]:self-start w-fit"
                                 >
-                                    {/* horizontal stroke (always visible) */}
-                                    <span class="col-start-1 row-start-1 h-px w-full bg-current" />
-                                    {/* vertical stroke: rotates 90° and fades out when open */}
-                                    <span
-                                        data-acc-vertical
-                                        class="col-start-1 row-start-1 h-full w-px bg-current transition-[rotate,opacity] duration-200 ease-out"
-                                    />
-                                </span>
-                            </button>
+                                    Nicole Fitzgerald
+                                </h3>
+                                <h3
+                                    data-role
+                                    class="font-display italic text-sm opacity-100 min-[810px]:opacity-0"
+                                >
+                                    Co-Founder/CEO
+                                </h3>
+                            </div>
                             <div
-                                data-acc-panel
-                                data-id={m.id}
-                                class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out"
+                                data-links
+                                class="flex flex-row font-mono font-light gap-gutter text-[8px] uppercase opacity-100 min-[810px]:opacity-0"
                             >
-                                <div class="overflow-hidden">
-                                    <div class="flex flex-col gap-gutter pb-gutter">
-                                        <div class="w-1/3 max-w-[160px]">
-                                            <Picture
-                                                src={m.image}
-                                                alt={m.name}
-                                            />
-                                        </div>
-                                        <div class="font-display text-sm tracking-wide leading-normal space-y-4 pb-gutter">
-                                            {m.bio.map((par) => (
-                                                <p>{par}</p>
-                                            ))}
-                                        </div>
-                                        <div class="flex flex-row gap-20 text-xs font-mono font-light pt-gutter">
-                                            <a href={m.links.github}>GITHUB</a>
-                                            <a href={m.links.linkedin}>
-                                                LINKEDIN
-                                            </a>
-                                            <a href={m.links.x}>X.COM</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a href="/">LinkedIn</a>
+                                <a href="/">X.COM</a>
                             </div>
                         </div>
-                    ))
-                }
+                    </div>
+                    <div
+                        data-card
+                        class="flex flex-col justify-start grow gap-1.5"
+                    >
+                        <div class="aspect-5/7">
+                            <Picture
+                                src={annemarie}
+                                alt="Anne Marie Droste"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div class="flex flex-col items-start gap-3 text-left">
+                            <div class="flex flex-col gap-0 w-full">
+                                <h3
+                                    data-name
+                                    class="font-display text-sm self-center max-[809px]:self-start w-fit"
+                                >
+                                    Anne Marie Droste
+                                </h3>
+                                <h3
+                                    data-role
+                                    class="font-display italic text-sm opacity-100 min-[810px]:opacity-0"
+                                >
+                                    Co-Founder/CEO
+                                </h3>
+                            </div>
+                            <div
+                                data-links
+                                class="flex flex-row font-mono font-light gap-gutter text-[8px] uppercase opacity-100 min-[810px]:opacity-0"
+                            >
+                                <a href="/">LinkedIn</a>
+                                <a href="/">X.COM</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        data-card
+                        class="flex flex-col justify-start grow gap-1.5"
+                    >
+                        <div class="aspect-5/7">
+                            <Picture
+                                src={max}
+                                alt="Max Marion"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div class="flex flex-col items-start gap-3 text-left">
+                            <div class="flex flex-col gap-0 w-full">
+                                <h3
+                                    data-name
+                                    class="font-display text-sm self-center max-[809px]:self-start w-fit"
+                                >
+                                    Max Marion
+                                </h3>
+                                <h3
+                                    data-role
+                                    class="font-display italic text-sm opacity-100 min-[810px]:opacity-0"
+                                >
+                                    Founding Member of Technical Staff
+                                </h3>
+                            </div>
+                            <div
+                                data-links
+                                class="flex flex-row font-mono font-light gap-gutter text-[8px] uppercase opacity-100 min-[810px]:opacity-0"
+                            >
+                                <a href="/">LinkedIn</a>
+                                <a href="/">X.COM</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        data-card
+                        class="flex flex-col justify-start grow gap-1.5"
+                    >
+                        <div class="aspect-5/7">
+                            <Picture
+                                src={katie}
+                                alt="Katie-Rose Skelly"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div class="flex flex-col items-start gap-3 text-left">
+                            <div class="flex flex-col gap-0 w-full">
+                                <h3
+                                    data-name
+                                    class="font-display text-sm self-center max-[809px]:self-start w-fit"
+                                >
+                                    Katie-Rose Skelly
+                                </h3>
+                                <h3
+                                    data-role
+                                    class="font-display italic text-sm opacity-100 min-[810px]:opacity-0"
+                                >
+                                    Chief Platform Officer
+                                </h3>
+                            </div>
+                            <div
+                                data-links
+                                class="flex flex-row font-mono font-light gap-gutter text-[8px] uppercase opacity-100 min-[810px]:opacity-0"
+                            >
+                                <a href="/">LinkedIn</a>
+                                <a href="/">X.COM</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div
             id="team-footer"
-            class="grid gap-gutter grid-cols-16 w-full h-fit font-mono font-light text-sm tracking-normal leading-normal pt-gutter"
+            class="relative grid gap-gutter grid-cols-8 min-[810px]:grid-cols-16 w-full h-fit font-mono font-light text-xs tracking-normal leading-normal pt-gutter"
         >
-            <div class="xl:col-span-4 col-span-6 text-xs">CONTACT</div>
-            <div class="xl:col-span-4 col-span-4 text-xs">SOCIALS</div>
-            <div class="col-span-6 text-xs">JOBS</div>
-            <p class="xl:col-span-4 col-span-6">
+            <div
+                class="col-span-3 min-[810px]:col-span-6 xl:col-span-4 text-xs"
+            >
+                CONTACT
+            </div>
+            <div
+                class="col-span-3 min-[810px]:col-span-4 xl:col-span-4 text-xs"
+            >
+                SOCIALS
+            </div>
+            <div class="col-span-2 min-[810px]:col-span-6 text-xs">JOBS</div>
+            <p class="col-span-3 min-[810px]:col-span-6 xl:col-span-4">
                 <span
                     ><a href="mailto:info@tacitlabs.co" class="underline"
                         >info@tacitlabs.co</a
@@ -212,7 +185,7 @@ const members = [
                 360 3rd St 5th floor<br />
                 San Francisco, CA 94107
             </p>
-            <ul class="xl:col-span-4 col-span-4">
+            <ul class="col-span-3 min-[810px]:col-span-4 xl:col-span-4">
                 <li>
                     <a
                         href="https://www.linkedin.com/in/tacitlabs/"
@@ -225,117 +198,131 @@ const members = [
                     >
                 </li>
             </ul>
-            <p class="col-span-6">
+            <p class="col-span-2 min-[810px]:col-span-6">
                 <a href="mailto:jobs@tacitlabs.co" class="underline"
                     >jobs@tacitlabs.co</a
                 >
             </p>
-            
         </div>
     </main>
-</Layout>
 
-<script>
-    const root = document.getElementById("team-interactive");
-    const names = root?.querySelectorAll<HTMLElement>("[data-name]");
-    const panels = root?.querySelectorAll<HTMLElement>("[data-panel]");
+    <script>
+        import { gsap } from "gsap";
 
-    function show(id: string | null) {
-        // Panels are stacked in one grid cell and always occupy space, so
-        // toggling opacity/visibility (not display) never changes layout.
-        panels?.forEach((p) => {
-            const active = p.dataset.id === id;
-            p.classList.toggle("opacity-0", !active);
-            p.classList.toggle("invisible", !active);
-        });
-        // Dim the names that aren't active.
-        names?.forEach((n) =>
-            n.classList.toggle("opacity-40", n.dataset.target !== id),
-        );
-    }
+        const team = document.querySelector<HTMLElement>("[data-team]");
 
-    function hideAll() {
-        panels?.forEach((p) => {
-            p.classList.add("opacity-0", "invisible");
-        });
-        names?.forEach((n) => n.classList.remove("opacity-40"));
-    }
+        if (team) {
+            type CardRefs = {
+                card: HTMLElement;
+                name: HTMLElement;
+                role: HTMLElement;
+                links: HTMLElement;
+                offset: number;
+                active: boolean;
+            };
 
-    // Hovering a name opens that person's info (and switches from any other).
-    names?.forEach((n) => {
-        n.addEventListener("mouseenter", () => show(n.dataset.target ?? null));
-    });
+            const refs: CardRefs[] = Array.from(
+                team.querySelectorAll<HTMLElement>("[data-card]"),
+            ).map((card) => ({
+                card,
+                name: card.querySelector<HTMLElement>("[data-name]")!,
+                role: card.querySelector<HTMLElement>("[data-role]")!,
+                links: card.querySelector<HTMLElement>("[data-links]")!,
+                offset: 0,
+                active: false,
+            }));
 
-    // Leaving the region vertically (above/below) closes it. Horizontal moves
-    // between the names and the info stay inside `root`, so they don't fire.
-    root?.addEventListener("mouseleave", hideAll);
+            // Measure how far each (collapsed) name must shift to read as
+            // centered under its image, then drive that purely with transforms
+            // so the slide is smooth. Skip active cards — they sit at x:0.
+            const measure = () => {
+                refs.forEach((r) => {
+                    if (r.active) return;
+                    r.offset = (r.card.clientWidth - r.name.offsetWidth) / 2;
+                    gsap.set(r.name, { x: r.offset });
+                });
+            };
 
-    // --- Accordion (below 810px) -----------------------------------------
-    // Single-open: expanding one collapses the others; tapping an open one
-    // closes it. Height animates via grid-template-rows 0fr <-> 1fr, set as
-    // an inline style so it always wins over the base utility class.
-    const accordion = document.getElementById("team-accordion");
-    const triggers =
-        accordion?.querySelectorAll<HTMLElement>("[data-acc-trigger]");
+            const setActive = (active: CardRefs | null) => {
+                refs.forEach((r) => {
+                    const isActive = active !== null && r === active;
+                    r.active = isActive;
 
-    function setAccordion(target: string | null) {
-        triggers?.forEach((t) => {
-            const id = t.dataset.target ?? null;
-            const open = id === target;
-            const panel = accordion?.querySelector<HTMLElement>(
-                `[data-acc-panel][data-id="${id}"]`,
-            );
-            const vertical = t.querySelector<HTMLElement>(
-                "[data-acc-vertical]",
-            );
-            t.setAttribute("aria-expanded", String(open));
-            if (panel) panel.style.gridTemplateRows = open ? "1fr" : "0fr";
-            // Rotate the vertical stroke onto the horizontal one and fade it
-            // out, morphing the plus into a minus.
-            vertical?.classList.toggle("rotate-90", open);
-            vertical?.classList.toggle("opacity-0", open);
-        });
-    }
+                    gsap.to(r.card, {
+                        opacity: active === null || isActive ? 1 : 0.2,
+                        duration: 0.5,
+                        ease: "power3.out",
+                        overwrite: "auto",
+                    });
 
-    triggers?.forEach((t) => {
-        t.addEventListener("click", () => {
-            const isOpen = t.getAttribute("aria-expanded") === "true";
-            setAccordion(isOpen ? null : (t.dataset.target ?? null));
-        });
-    });
+                    gsap.to(r.name, {
+                        x: isActive ? 0 : r.offset,
+                        duration: 0.6,
+                        ease: "power3.out",
+                        overwrite: "auto",
+                    });
 
-    // Pin the accordion: center the COLLAPSED list in the space between the top
-    // and the footer, then hold that top position. Because the offset is based
-    // on the (constant) header heights rather than the live height, expanding a
-    // panel grows the list downward instead of re-centering the whole block.
-    const footer = document.getElementById("team-footer");
+                    gsap.to([r.role, r.links], {
+                        autoAlpha: isActive ? 1 : 0,
 
-    function collapsedHeight() {
-        // Headers don't change height, so this is stable whether or not a
-        // panel is open. Each item adds a 1px top border (+1px bottom on last).
-        let h = 1;
-        triggers?.forEach((t) => (h += t.offsetHeight + 1));
-        return h;
-    }
+                        duration: isActive ? 0.7 : 0.5,
+                        ease: isActive ? "power3.out" : "power3.out",
+                        overwrite: "auto",
+                    });
+                });
+            };
 
-    function pinAccordion() {
-        if (!accordion || !footer) return;
-        // Only applies in accordion mode; skip while it's hidden (≥810px).
-        if (accordion.offsetParent === null) {
-            accordion.style.marginTop = "";
-            return;
+            // Only enable the hover interaction at >=810px. Below that (mobile),
+            // every card stays in its expanded state via CSS with no JS, and
+            // gsap.matchMedia reverts any inline styles when we cross down.
+            const mm = gsap.matchMedia();
+            mm.add("(min-width: 810px)", () => {
+                // Swap CSS centering for transform centering without a visual
+                // jump, and hide role/links without removing them from flow —
+                // their space stays reserved so images never shift on expand.
+                refs.forEach((r) => {
+                    r.name.classList.remove("self-center");
+                    r.name.classList.add("self-start");
+                    gsap.set([r.role, r.links], { autoAlpha: 0 });
+                });
+                measure();
+                // Re-measure once the custom display font has loaded (its
+                // metrics change the name width).
+                document.fonts?.ready.then(measure);
+
+                const onEnter = refs.map((r) => {
+                    const handler = () => setActive(r);
+                    r.card.addEventListener("mouseenter", handler);
+                    return handler;
+                });
+                const onLeave = () => setActive(null);
+                team.addEventListener("mouseleave", onLeave);
+
+                let resizeRAF = 0;
+                const onResize = () => {
+                    cancelAnimationFrame(resizeRAF);
+                    resizeRAF = requestAnimationFrame(measure);
+                };
+                window.addEventListener("resize", onResize);
+
+                return () => {
+                    refs.forEach((r, i) =>
+                        r.card.removeEventListener("mouseenter", onEnter[i]),
+                    );
+                    team.removeEventListener("mouseleave", onLeave);
+                    window.removeEventListener("resize", onResize);
+                    cancelAnimationFrame(resizeRAF);
+                    // Reset to the static expanded state mobile expects.
+                    refs.forEach((r) => {
+                        r.active = false;
+                        gsap.set(r.card, { clearProps: "opacity" });
+                        gsap.set(r.name, { clearProps: "transform" });
+                        gsap.set([r.role, r.links], {
+                            clearProps: "opacity,visibility",
+                        });
+                    });
+                };
+            });
         }
-        const main = accordion.closest("main");
-        if (!main) return;
-        const style = getComputedStyle(main);
-        const pad =
-            parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
-        // Vertical space available between the top padding and the footer.
-        const region = window.innerHeight - pad - footer.offsetHeight;
-        const offset = Math.max(0, (region - collapsedHeight()) / 2);
-        accordion.style.marginTop = `${offset}px`;
-    }
-
-    pinAccordion();
-    window.addEventListener("resize", pinAccordion);
-</script>
+    </script>
+</Layout>

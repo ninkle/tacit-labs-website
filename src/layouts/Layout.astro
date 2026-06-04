@@ -22,20 +22,18 @@ const { title = "Tacit Labs" } = Astro.props;
     </head>
     <body class="min-h-dvh bg-offwhite text-black antialiased">
         <nav
-            class="fixed top-gutter left-gutter right-gutter grid grid-cols-16 gap-gutter z-50"
+            class="fixed top-gutter left-gutter right-gutter flex flex-row gap-gutter items-center z-50"
         >
-            <a
-                href="/"
-                class="font-display text-[1.5rem] tracking-normal leading-normal min-[810px]:col-span-4 col-span-6"
-                >Tacit Labs</a
-            >
+            <a href="/">
+                <img src="/favicon.svg" alt="Tacit Labs" class="size-5 block" />
+            </a>
+
             <div
-                class="hidden min-[810px]:flex flex-row justify-end gap-20 col-span-4 col-start-13 font-light text-xs font-mono tracking-normal leading-normal"
+                class="hidden min-[810px]:flex flex-row gap-20 pl-10 font-light text-xs font-mono tracking-normal leading-normal"
             >
                 <a href="/team"> TEAM </a>
-                <a href="/research"> RESEARCH </a>
-                <a href="/"> BLOG </a>
-                <a href="/"> CONTACT </a>
+                <a href="/blog"> BLOG </a>
+                <a href="/join-us"> JOIN US </a>
             </div>
 
             <button
@@ -43,7 +41,7 @@ const { title = "Tacit Labs" } = Astro.props;
                 id="menu-toggle"
                 aria-expanded="false"
                 aria-controls="mobile-menu"
-                class="col-span-4 col-start-13 flex justify-end font-mono font-light text-xs tracking-normal leading-normal cursor-pointer z-50 min-[810px]:hidden"
+                class="ml-auto flex justify-end font-mono font-light text-xs tracking-normal leading-normal cursor-pointer z-50 min-[810px]:hidden"
             >
                 MENU
             </button>
@@ -53,15 +51,14 @@ const { title = "Tacit Labs" } = Astro.props;
         <div
             id="mobile-menu"
             data-open="false"
-            class="menu-panel fixed top-0 left-gutter right-gutter h-[200px] border-b border-[#C4C4C4] bg-offwhite z-40 flex flex-col items-center justify-center min-[810px]:hidden"
+            class="menu-panel fixed top-0 left-gutter right-gutter h-[200px] border-b border-[#C4C4C4] bg-offwhite z-40 flex flex-row items-center justify-center min-[810px]:hidden"
         >
             <div
                 class="flex flex-col items-center gap-0 font-mono font-light text-xs tracking-normal leading-normal"
             >
                 <a href="/team">TEAM</a>
-                <a href="/research">RESEARCH</a>
                 <a href="/">BLOG</a>
-                <a href="/">CONTACT</a>
+                <a href="/">JOIN US</a>
             </div>
         </div>
 
