@@ -140,7 +140,7 @@ const aspectRatio = `${imgW} / ${imgH}`;
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             ctx.clearRect(0, 0, cssW, cssH);
             ctx.fillStyle = color;
-            ctx.font = `${fontPx}px ui-monospace, "Roboto Mono", monospace`;
+            ctx.font = `${fontPx}px "Alpina", ui-monospace, monospace`;
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
             for (let i = 0; i < n; i++)
@@ -236,7 +236,16 @@ const aspectRatio = `${imgW} / ${imgH}`;
         document.fonts?.ready.then(layout);
     };
 
-    document
-        .querySelectorAll<HTMLElement>("[data-ascii-image]")
-        .forEach(initAscii);
+    // Runs on first load and after every ClientRouter navigation. The guard
+    // stops an element from being initialised twice.
+    const initAll = () => {
+        document
+            .querySelectorAll<HTMLElement>("[data-ascii-image]")
+            .forEach((el) => {
+                if (el.dataset.asciiReady) return;
+                el.dataset.asciiReady = "1";
+                initAscii(el);
+            });
+    };
+    document.addEventListener("astro:page-load", initAll);
 </script>
