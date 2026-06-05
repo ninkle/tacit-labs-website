@@ -7,10 +7,10 @@ import AsciiImage from "../components/AsciiImage.astro";
 
 <Layout title="Tacit Labs">
     <main
-        class="p-gutter gap-gutter grid grid-cols-16 h-screen max-h-dvh relative overflow-hidden"
+        class="gap-gutter grid grid-cols-16 h-screen max-h-dvh relative overflow-hidden"
     >
         <div
-            class="col-span-12 min-[700px]:col-span-7 min-[1512px]:col-span-5 flex flex-col grow justify-end"
+            class="col-span-12 min-[700px]:col-span-7 min-[1512px]:col-span-5 flex flex-col grow justify-end p-gutter"
         >
             <h1
                 class="font-display text-[18px] tracking-normal leading-normal pb-1"
@@ -39,9 +39,9 @@ import AsciiImage from "../components/AsciiImage.astro";
         </div>
         <AsciiImage
             src="src/images/tacit-vector.png"
-            cols={150}
-            radius={40}
-            class="absolute translate-x-[40%] opacity-20 right-0 min-h-dvh"
+            cols={100}
+            radius={50}
+            class="absolute translate-x-[40%] translate-y-[-5%] opacity-20 right-0 min-h-dvh"
         />
     </main>
 </Layout>

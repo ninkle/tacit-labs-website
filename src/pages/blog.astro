@@ -6,16 +6,18 @@ import blog001 from "../images/blog001.jpg";
 
 <Layout title="Tacit Labs">
     <main class="p-gutter flex flex-col min-h-dvh min-[810px]:h-screen">
-        <div
-            class="flex flex-col justify-center w-full h-fit grow pt-6.5 pb-6.5"
-        >
-            <div class="grid grid-cols-16 gap-gutter h-fit">
-                <div class="col-start-1 col-span-3 font-display text-sm">
+        <div class="flex flex-col justify-center w-full h-fit grow pb-4">
+            <div
+                class="grid grid-cols-8 min-[810px]:grid-cols-16 gap-gutter h-fit"
+            >
+                <div
+                    class="col-span-8 min-[810px]:col-start-1 min-[810px]:col-span-3 font-display text-sm italic"
+                >
                     Blog
                 </div>
                 <a
                     href="/introducing-tacit-labs"
-                    class="col-span-4 col-start-4 flex flex-col gap-2"
+                    class="col-span-full min-[640px]:col-span-4 min-[810px]:col-start-5 flex flex-col gap-2"
                 >
                     <div
                         class="aspect-7/5 w-full h-auto overflow-clip col-span-4"
