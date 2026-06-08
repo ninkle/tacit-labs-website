@@ -22,12 +22,17 @@ const { title = "Tacit Labs" } = Astro.props;
         <title>{title}</title>
         <ClientRouter />
     </head>
-    <body class="min-h-dvh bg-offwhite text-black antialiased">
+    <body class="min-h-dvh bg-[#EDEFEB] text-black antialiased">
         <nav
             class="fixed top-gutter left-gutter right-gutter flex flex-row gap-gutter items-center z-50"
         >
-            <a href="/">
-                <img src="/favicon.svg" alt="Tacit Labs" class="size-7 block" />
+            <a href="/" transition:persist>
+                <img
+                    src="/favicon.svg"
+                    alt="Tacit Labs"
+                    data-logo
+                    class="logo size-7 block"
+                />
             </a>
 
             <div
@@ -66,6 +71,21 @@ const { title = "Tacit Labs" } = Astro.props;
 
         <slot />
 
+        <style is:global>
+            @keyframes logo-spin {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+            .logo--spin {
+                animation: logo-spin 0.8s ease-in;
+                animation-delay: 0.25s;
+            }
+        </style>
+
         <script>
             // Use delegation + element lookups so the menu keeps working after
             // client-side navigations (ClientRouter swaps the nav DOM, which
@@ -83,6 +103,23 @@ const { title = "Tacit Labs" } = Astro.props;
                     const menu = document.getElementById("mobile-menu");
                     setOpen(menu?.dataset.open !== "true");
                 }
+
+                // Spin the logo one clockwise turn on click. Remove + reflow +
+                // re-add so rapid repeat clicks restart the animation. The logo
+                // is transition:persist, so the spin continues across the
+                // navigation home rather than being cut off by the DOM swap.
+                const logo = target?.closest<HTMLElement>("[data-logo]");
+                if (logo) {
+                    logo.classList.remove("logo--spin");
+                    void logo.offsetWidth;
+                    logo.classList.add("logo--spin");
+                }
+            });
+
+            // Drop the class when the turn finishes so it can be retriggered.
+            document.addEventListener("animationend", (e) => {
+                const t = e.target as Element | null;
+                if (t?.matches("[data-logo]")) t.classList.remove("logo--spin");
             });
 
             // Close on Escape, and when the viewport grows past the breakpoint
