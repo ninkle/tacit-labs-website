@@ -83,40 +83,53 @@ const papers = [
 </Layout>
 
 <script>
-    const root = document.getElementById("research-titles");
-    const titles = root?.querySelectorAll<HTMLElement>("[data-title]");
-    // Every revealable element (synopsis panels).
-    const panels = document.querySelectorAll<HTMLElement>("[data-synopsis]");
-    // The "SYNOPSIS" / "AUTHORS" column headers, shown only while hovering.
-    const headers = document.querySelectorAll<HTMLElement>(
-        "[data-research-header]",
-    );
-
-    function show(id: string | null) {
-        panels.forEach((p) => {
-            const active = p.dataset.id === id;
-            p.classList.toggle("opacity-0", !active);
-            p.classList.toggle("invisible", !active);
-        });
-        headers.forEach((h) => h.classList.remove("opacity-0", "invisible"));
-        // Dim the titles that aren't active.
-        titles?.forEach((t) =>
-            t.classList.toggle("opacity-40", t.dataset.target !== id),
+    // Wrapped in astro:page-load so the hover interaction is wired up both on
+    // first load and after every ClientRouter navigation. Astro evaluates this
+    // module script only once, so without this the listeners would never bind
+    // when arriving at /join-us via a client-side navigation. Listeners are
+    // bound to page elements that get swapped out on navigation, so they're
+    // garbage-collected with the old DOM — no manual teardown needed.
+    function initJoinUs() {
+        const root = document.getElementById("research-titles");
+        const titles = root?.querySelectorAll<HTMLElement>("[data-title]");
+        // Every revealable element (synopsis panels).
+        const panels =
+            document.querySelectorAll<HTMLElement>("[data-synopsis]");
+        // The "SYNOPSIS" / "AUTHORS" column headers, shown only while hovering.
+        const headers = document.querySelectorAll<HTMLElement>(
+            "[data-research-header]",
         );
+
+        function show(id: string | null) {
+            panels.forEach((p) => {
+                const active = p.dataset.id === id;
+                p.classList.toggle("opacity-0", !active);
+                p.classList.toggle("invisible", !active);
+            });
+            headers.forEach((h) => h.classList.remove("opacity-0", "invisible"));
+            // Dim the titles that aren't active.
+            titles?.forEach((t) =>
+                t.classList.toggle("opacity-40", t.dataset.target !== id),
+            );
+        }
+
+        function hideAll() {
+            panels.forEach((p) => p.classList.add("opacity-0", "invisible"));
+            headers.forEach((h) => h.classList.add("opacity-0", "invisible"));
+            titles?.forEach((t) => t.classList.remove("opacity-40"));
+        }
+
+        // Hovering a title reveals its synopsis + authors (and switches between).
+        titles?.forEach((t) => {
+            t.addEventListener("mouseenter", () =>
+                show(t.dataset.target ?? null),
+            );
+        });
+
+        // Leaving the list of titles hides everything. Moving between titles
+        // stays inside `root`, so it doesn't fire.
+        root?.addEventListener("mouseleave", hideAll);
     }
 
-    function hideAll() {
-        panels.forEach((p) => p.classList.add("opacity-0", "invisible"));
-        headers.forEach((h) => h.classList.add("opacity-0", "invisible"));
-        titles?.forEach((t) => t.classList.remove("opacity-40"));
-    }
-
-    // Hovering a title reveals its synopsis + authors (and switches between).
-    titles?.forEach((t) => {
-        t.addEventListener("mouseenter", () => show(t.dataset.target ?? null));
-    });
-
-    // Leaving the list of titles hides everything. Moving between titles stays
-    // inside `root`, so it doesn't fire.
-    root?.addEventListener("mouseleave", hideAll);
+    document.addEventListener("astro:page-load", initJoinUs);
 </script>

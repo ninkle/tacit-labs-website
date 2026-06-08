@@ -45,7 +45,7 @@ import nicole from "../images/nicole.jpg";
                             </div>
                             <div
                                 data-links
-                                class="flex flex-row font-mono font-light gap-gutter text-[8px] uppercase opacity-100 min-[810px]:opacity-0"
+                                class="flex flex-row font-mono font-light gap-gutter text-[10px] uppercase opacity-100 min-[810px]:opacity-0"
                             >
                                 <a href="/" class="nav-underline">LinkedIn</a>
                                 <a href="/" class="nav-underline">X.COM</a>
@@ -75,12 +75,12 @@ import nicole from "../images/nicole.jpg";
                                     data-role
                                     class="font-display italic text-sm opacity-100 min-[810px]:opacity-0"
                                 >
-                                    Co-Founder/CEO
+                                    Co-Founder/COO
                                 </h3>
                             </div>
                             <div
                                 data-links
-                                class="flex flex-row font-mono font-light gap-gutter text-[8px] uppercase opacity-100 min-[810px]:opacity-0"
+                                class="flex flex-row font-mono font-light gap-gutter text-[10px] uppercase opacity-100 min-[810px]:opacity-0"
                             >
                                 <a href="/" class="nav-underline">LinkedIn</a>
                                 <a href="/" class="nav-underline">X.COM</a>
@@ -115,7 +115,7 @@ import nicole from "../images/nicole.jpg";
                             </div>
                             <div
                                 data-links
-                                class="flex flex-row font-mono font-light gap-gutter text-[8px] uppercase opacity-100 min-[810px]:opacity-0"
+                                class="flex flex-row font-mono font-light gap-gutter text-[10px] uppercase opacity-100 min-[810px]:opacity-0"
                             >
                                 <a href="/" class="nav-underline">LinkedIn</a>
                                 <a href="/" class="nav-underline">X.COM</a>
@@ -150,7 +150,7 @@ import nicole from "../images/nicole.jpg";
                             </div>
                             <div
                                 data-links
-                                class="flex flex-row font-mono font-light gap-gutter text-[8px] uppercase opacity-100 min-[810px]:opacity-0"
+                                class="flex flex-row font-mono font-light gap-gutter text-[10px] uppercase opacity-100 min-[810px]:opacity-0"
                             >
                                 <a href="/" class="nav-underline">LinkedIn</a>
                                 <a href="/" class="nav-underline">X.COM</a>
@@ -189,12 +189,15 @@ import nicole from "../images/nicole.jpg";
                 <li>
                     <a
                         href="https://www.linkedin.com/in/tacitlabs/"
-                        target="_blank">LinkedIn</a
+                        target="_blank"
+                        class="nav-underline">LinkedIn</a
                     >
                 </li>
                 <li>
-                    <a href="https://github.com/tacitlabs" target="_blank"
-                        >X.COM</a
+                    <a
+                        href="https://github.com/tacitlabs"
+                        target="_blank"
+                        class="nav-underline">X.COM</a
                     >
                 </li>
             </ul>
@@ -209,15 +212,20 @@ import nicole from "../images/nicole.jpg";
     <script>
         import { gsap } from "gsap";
 
-        const team = document.querySelector<HTMLElement>("[data-team]");
+        // gsap.matchMedia instance for the current page. Kept at module scope so
+        // we can revert it before the ClientRouter swaps the DOM (otherwise the
+        // window-bound resize listener it registers would leak each navigation).
+        let mm: gsap.MatchMedia | null = null;
 
-        if (team) {
+        function initTeam() {
+            const team = document.querySelector<HTMLElement>("[data-team]");
+            if (!team) return;
+
             type CardRefs = {
                 card: HTMLElement;
                 name: HTMLElement;
                 role: HTMLElement;
                 links: HTMLElement;
-                offset: number;
                 active: boolean;
             };
 
@@ -228,20 +236,17 @@ import nicole from "../images/nicole.jpg";
                 name: card.querySelector<HTMLElement>("[data-name]")!,
                 role: card.querySelector<HTMLElement>("[data-role]")!,
                 links: card.querySelector<HTMLElement>("[data-links]")!,
-                offset: 0,
                 active: false,
             }));
 
-            // Measure how far each (collapsed) name must shift to read as
-            // centered under its image, then drive that purely with transforms
-            // so the slide is smooth. Skip active cards — they sit at x:0.
-            const measure = () => {
-                refs.forEach((r) => {
-                    if (r.active) return;
-                    r.offset = (r.card.clientWidth - r.name.offsetWidth) / 2;
-                    gsap.set(r.name, { x: r.offset });
-                });
-            };
+            // The RESTING (centered) name position is done purely with CSS
+            // (`self-center` on the name, see markup) so it's always pixel-
+            // perfect on load — no JS measurement that could race the font swap
+            // or layout. We only measure the slide distance at hover time, when
+            // the font is loaded and layout is settled, and translate the name
+            // from its centered position to the left edge of the card.
+            const leftShift = (r: CardRefs) =>
+                -(r.card.clientWidth - r.name.offsetWidth) / 2;
 
             const setActive = (active: CardRefs | null) => {
                 refs.forEach((r) => {
@@ -255,8 +260,10 @@ import nicole from "../images/nicole.jpg";
                         overwrite: "auto",
                     });
 
+                    // Active: slide left from the CSS-centered resting position.
+                    // Otherwise: return to x:0 (i.e. the centered resting spot).
                     gsap.to(r.name, {
-                        x: isActive ? 0 : r.offset,
+                        x: isActive ? leftShift(r) : 0,
                         duration: 0.6,
                         ease: "power3.out",
                         overwrite: "auto",
@@ -264,9 +271,8 @@ import nicole from "../images/nicole.jpg";
 
                     gsap.to([r.role, r.links], {
                         autoAlpha: isActive ? 1 : 0,
-
                         duration: isActive ? 0.7 : 0.5,
-                        ease: isActive ? "power3.out" : "power3.out",
+                        ease: "power3.out",
                         overwrite: "auto",
                     });
                 });
@@ -275,20 +281,14 @@ import nicole from "../images/nicole.jpg";
             // Only enable the hover interaction at >=810px. Below that (mobile),
             // every card stays in its expanded state via CSS with no JS, and
             // gsap.matchMedia reverts any inline styles when we cross down.
-            const mm = gsap.matchMedia();
+            mm = gsap.matchMedia();
             mm.add("(min-width: 810px)", () => {
-                // Swap CSS centering for transform centering without a visual
-                // jump, and hide role/links without removing them from flow —
-                // their space stays reserved so images never shift on expand.
-                refs.forEach((r) => {
-                    r.name.classList.remove("self-center");
-                    r.name.classList.add("self-start");
-                    gsap.set([r.role, r.links], { autoAlpha: 0 });
-                });
-                measure();
-                // Re-measure once the custom display font has loaded (its
-                // metrics change the name width).
-                document.fonts?.ready.then(measure);
+                // Hide role/links without removing them from flow — their space
+                // stays reserved so images never shift on expand. Names keep
+                // their CSS-centered position; no transform is set at rest.
+                refs.forEach((r) =>
+                    gsap.set([r.role, r.links], { autoAlpha: 0 }),
+                );
 
                 const onEnter = refs.map((r) => {
                     const handler = () => setActive(r);
@@ -298,20 +298,11 @@ import nicole from "../images/nicole.jpg";
                 const onLeave = () => setActive(null);
                 team.addEventListener("mouseleave", onLeave);
 
-                let resizeRAF = 0;
-                const onResize = () => {
-                    cancelAnimationFrame(resizeRAF);
-                    resizeRAF = requestAnimationFrame(measure);
-                };
-                window.addEventListener("resize", onResize);
-
                 return () => {
                     refs.forEach((r, i) =>
                         r.card.removeEventListener("mouseenter", onEnter[i]),
                     );
                     team.removeEventListener("mouseleave", onLeave);
-                    window.removeEventListener("resize", onResize);
-                    cancelAnimationFrame(resizeRAF);
                     // Reset to the static expanded state mobile expects.
                     refs.forEach((r) => {
                         r.active = false;
@@ -324,5 +315,17 @@ import nicole from "../images/nicole.jpg";
                 };
             });
         }
+
+        // Run on first load AND after every ClientRouter navigation. Astro only
+        // evaluates a page's module script once, so without this the hover setup
+        // would never run when arriving at /team via a client-side navigation.
+        document.addEventListener("astro:page-load", initTeam);
+
+        // Tear down before the DOM is swapped away so the matchMedia's
+        // window/resize listeners don't accumulate across navigations.
+        document.addEventListener("astro:before-swap", () => {
+            mm?.revert();
+            mm = null;
+        });
     </script>
 </Layout>

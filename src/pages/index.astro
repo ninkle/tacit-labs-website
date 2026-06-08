@@ -10,38 +10,94 @@ import AsciiImage from "../components/AsciiImage.astro";
         class="gap-gutter grid grid-cols-16 h-screen max-h-dvh relative overflow-hidden"
     >
         <div
-            class="col-span-12 min-[700px]:col-span-7 min-[1512px]:col-span-5 flex flex-col grow justify-end p-gutter"
+            class="col-span-16 min-[810px]:w-[550px] flex flex-col grow justify-end p-gutter"
         >
             <h1
-                class="font-display text-[18px] tracking-normal leading-normal pb-1"
+                class="font-display text-[28px] tracking-normal leading-normal pb-1"
             >
                 Tacit Labs
             </h1>
             <p
                 class="font-mono font-light text-sm tracking-[-2%] leading-normal"
             >
-                Tacit enables frontier labs to develop LLM capabilities for the
-                life sciences by collecting high quality data on how science is
-                done.<br /><br />
+                Tacit is an applied research lab at the intersection of AI and
+                the life sciences.<br /><br />
 
-                We imagine a future in which AI is a powerful tool for
-                scientific discovery, capable of helping us reason through
-                complex problems and driving optimal decision-making across
-                discovery and development pipelines.<br /><br />
+                The shape of company that will bring the next generation of
+                drugs to market will be model-centric, massively parallelized,
+                and increasingly autonomous. Tacit is working across the
+                ecosystem to design the blueprint for this kind of company.<br
+                /><br />
 
-                Collaborating with biotechs and academic labs, we evaluate
-                models on high-value, real-world tasks and works with frontier
-                AI labs to systematically improve model performance on those
-                tasks. Data collection will focus on outcome-verifiable,
-                long-horizon planning and reasoning tasks to power the most
-                critical functions in the life sciences.
+                We are a team of researchers, engineers, scientists, and
+                operators who have trained frontier language models, designed
+                and scaled experimental platforms, and brought drugs to the
+                clinic.<br /><br />
+
+                <span class="nav-underline"
+                    ><a href="/introducing-tacit-labs"
+                        >Read more <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.25"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            class="inline-block size-[1em] align-[-0.125em]"
+                            ><path d="M7 17 17 7"></path><path d="M8 7h9v9"
+                            ></path></svg
+                        ></a
+                    ></span
+                > and/or <span class="nav-underline"
+                    ><a href="/join-us"
+                        >join us <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.25"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            class="inline-block size-[1em] align-[-0.125em]"
+                            ><path d="M7 17 17 7"></path><path d="M8 7h9v9"
+                            ></path></svg
+                        ></a
+                    ></span
+                >.
             </p>
         </div>
         <AsciiImage
-            src="src/images/tacit-vector.png"
-            cols={100}
+            src="src/images/tacit-spiral.png"
+            cols={150}
             radius={50}
-            class="absolute translate-x-[40%] translate-y-[-5%] opacity-20 right-0 min-h-dvh"
+            class="absolute translate-x-[40%] translate-y-[-25%] opacity-50 right-0 h-[calc(90vh+50vw)]"
         />
     </main>
+
+    <script>
+        // The composition is tuned at a 2104x1256 viewport. Scale the ascii
+        // image uniformly by whichever viewport axis is more constraining so it
+        // keeps the same proportions as the window resizes. --ascii-scale is a
+        // unitless multiplier consumed by the component's height (and, via its
+        // aspect-ratio + percentage translates, its width and position too).
+        const REF_W = 1920;
+        const REF_H = 1080;
+
+        const setAsciiScale = () => {
+            const s = Math.min(
+                window.innerWidth / REF_W,
+                window.innerHeight / REF_H,
+            );
+            document.documentElement.style.setProperty(
+                "--ascii-scale",
+                String(s),
+            );
+        };
+
+        setAsciiScale();
+        window.addEventListener("resize", setAsciiScale);
+        // Re-apply after ClientRouter navigations.
+        document.addEventListener("astro:page-load", setAsciiScale);
+    </script>
 </Layout>

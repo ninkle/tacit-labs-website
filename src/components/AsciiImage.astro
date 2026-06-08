@@ -30,7 +30,7 @@ const {
 } = Astro.props;
 
 // Light -> dense ramp; index 0 (space) is treated as empty.
-const ramp = " .:-=+*#%@";
+const ramp = " .:-=+*#%N";
 
 const absPath = path.resolve(process.cwd(), src);
 const meta = await sharp(absPath).metadata();
@@ -77,7 +77,7 @@ const aspectRatio = `${imgW} / ${imgH}`;
     data-color={color}
     data-radius={radius}
     class={className}
-    style={`aspect-ratio:${aspectRatio}`}
+    style={`aspect-ratio:${aspectRatio};transform:rotate(20deg)`}
 >
     <canvas data-ascii-canvas class="block w-full h-full"></canvas>
     <script
@@ -148,10 +148,12 @@ const aspectRatio = `${imgW} / ${imgH}`;
         };
 
         const layout = () => {
-            const rect = canvas.getBoundingClientRect();
-            if (rect.width === 0 || rect.height === 0) return;
-            cssW = rect.width;
-            cssH = rect.height;
+            // Use the layout box (clientWidth/Height), not getBoundingClientRect,
+            // so the CSS rotation on the wrapper doesn't inflate these to the
+            // rotated bounding box.
+            cssW = canvas.clientWidth;
+            cssH = canvas.clientHeight;
+            if (cssW === 0 || cssH === 0) return;
             dpr = Math.min(window.devicePixelRatio || 1, 2);
             canvas.width = Math.round(cssW * dpr);
             canvas.height = Math.round(cssH * dpr);
@@ -220,9 +222,10 @@ const aspectRatio = `${imgW} / ${imgH}`;
         };
 
         canvas.addEventListener("pointermove", (e) => {
-            const rect = canvas.getBoundingClientRect();
-            px = ((e.clientX - rect.left) / rect.width) * cssW;
-            py = ((e.clientY - rect.top) / rect.height) * cssH;
+            // offsetX/Y are in the canvas's own (untransformed) coordinate
+            // space, so they stay correct under the wrapper's CSS rotation.
+            px = e.offsetX;
+            py = e.offsetY;
             pointerActive = true;
             start();
         });
