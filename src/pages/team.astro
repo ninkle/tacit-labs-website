@@ -13,7 +13,9 @@ import nicole from "../images/nicole.jpg";
     <main
         class="p-gutter flex flex-col min-h-dvh min-[810px]:h-screen overflow-x-clip"
     >
-        <div class="flex flex-col justify-center w-full grow pt-6.5 pb-6.5">
+        <div
+            class="flex flex-col min-[810px]:justify-center justify-start w-full grow pt-9 min-[810px]:pt-6.5 pb-6.5"
+        >
             <div class="grid grid-cols-8 min-[810px]:grid-cols-16 gap-gutter">
                 <div
                     data-team
@@ -196,50 +198,56 @@ import nicole from "../images/nicole.jpg";
         </div>
         <div
             id="team-footer"
-            class="relative grid gap-gutter grid-cols-8 min-[810px]:grid-cols-16 w-full h-fit font-mono font-light text-xs tracking-normal leading-normal pt-gutter"
+            class="relative grid gap-gutter gap-y-6 min-[810px]:gap-y-gutter grid-cols-8 min-[810px]:grid-cols-16 w-full h-fit font-mono font-light text-xs tracking-normal leading-normal pt-gutter"
         >
             <div
-                class="col-span-3 min-[810px]:col-span-6 xl:col-span-4 text-xs"
+                class="col-span-8 min-[810px]:col-span-6 xl:col-span-4 flex flex-col gap-gutter"
             >
-                CONTACT
+                <div class="text-xs">CONTACT</div>
+                <p>
+                    <span
+                        ><a
+                            href="mailto:info@tacitlabs.co"
+                            class="underline break-all">info@tacitlabs.co</a
+                        ></span
+                    ><br /><br />
+
+                    360 3rd St 5th floor<br />
+                    San Francisco, CA 94107
+                </p>
             </div>
             <div
-                class="col-span-3 min-[810px]:col-span-4 xl:col-span-4 text-xs"
+                class="col-span-4 min-[810px]:col-span-4 flex flex-col gap-gutter"
             >
-                SOCIALS
+                <div class="text-xs">SOCIALS</div>
+                <ul>
+                    <li>
+                        <a
+                            href="https://www.linkedin.com/company/tacit-labs/about/"
+                            target="_blank"
+                            class="nav-underline">LinkedIn</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://x.com/tacitlabsco"
+                            target="_blank"
+                            class="nav-underline">X.COM</a
+                        >
+                    </li>
+                </ul>
             </div>
-            <div class="col-span-2 min-[810px]:col-span-6 text-xs">JOBS</div>
-            <p class="col-span-3 min-[810px]:col-span-6 xl:col-span-4">
-                <span
-                    ><a href="mailto:info@tacitlabs.co" class="underline break-all"
-                        >info@tacitlabs.co</a
-                    ></span
-                ><br /><br />
-
-                360 3rd St 5th floor<br />
-                San Francisco, CA 94107
-            </p>
-            <ul class="col-span-3 min-[810px]:col-span-4 xl:col-span-4">
-                <li>
+            <div
+                class="col-span-4 min-[810px]:col-span-6 flex flex-col gap-gutter"
+            >
+                <div class="text-xs">JOBS</div>
+                <p>
                     <a
-                        href="https://www.linkedin.com/company/tacit-labs/about/"
-                        target="_blank"
-                        class="nav-underline">LinkedIn</a
+                        href="mailto:jobs@tacitlabs.co"
+                        class="underline break-all">jobs@tacitlabs.co</a
                     >
-                </li>
-                <li>
-                    <a
-                        href="https://x.com/tacitlabsco"
-                        target="_blank"
-                        class="nav-underline">X.COM</a
-                    >
-                </li>
-            </ul>
-            <p class="col-span-2 min-[810px]:col-span-6">
-                <a href="mailto:jobs@tacitlabs.co" class="underline break-all"
-                    >jobs@tacitlabs.co</a
-                >
-            </p>
+                </p>
+            </div>
         </div>
     </main>
 
