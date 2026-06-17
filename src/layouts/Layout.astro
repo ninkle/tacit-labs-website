@@ -24,7 +24,7 @@ const { title = "Tacit Labs" } = Astro.props;
     </head>
     <body class="min-h-dvh bg-[#EDEFEB] text-black antialiased">
         <nav
-            class="fixed top-gutter left-gutter right-gutter flex flex-row gap-gutter items-center z-50"
+            class="fixed top-gutter right-gutter left-gutter flex flex-row gap-gutter justify-between min-[810px]:justify-start items-center z-50"
         >
             <a href="/" transition:persist>
                 <img
@@ -48,7 +48,7 @@ const { title = "Tacit Labs" } = Astro.props;
                 id="menu-toggle"
                 aria-expanded="false"
                 aria-controls="mobile-menu"
-                class="ml-auto flex justify-end font-mono font-light text-xs tracking-normal leading-normal cursor-pointer z-50 min-[810px]:hidden"
+                class="text-right font-mono font-light text-xs tracking-normal leading-normal cursor-pointer z-50 min-[810px]:hidden"
             >
                 MENU
             </button>
@@ -58,7 +58,7 @@ const { title = "Tacit Labs" } = Astro.props;
         <div
             id="mobile-menu"
             data-open="false"
-            class="menu-panel fixed top-0 left-gutter right-gutter h-[200px] border-b border-[#C4C4C4] bg-offwhite z-40 flex flex-row items-center justify-center min-[810px]:hidden"
+            class="menu-panel fixed top-0 left-0 right-0 h-[200px] border-b border-[#C4C4C4] bg-offwhite z-40 flex flex-row items-center justify-center min-[810px]:hidden"
         >
             <div
                 class="flex flex-col items-center gap-0 font-mono font-light text-xs tracking-normal leading-normal"
@@ -103,10 +103,6 @@ const { title = "Tacit Labs" } = Astro.props;
                     setOpen(menu?.dataset.open !== "true");
                 }
 
-                // Spin the logo one clockwise turn on click. Remove + reflow +
-                // re-add so rapid repeat clicks restart the animation. The logo
-                // is transition:persist, so the spin continues across the
-                // navigation home rather than being cut off by the DOM swap.
                 const logo = target?.closest<HTMLElement>("[data-logo]");
                 if (logo) {
                     logo.classList.remove("logo--spin");
@@ -115,14 +111,11 @@ const { title = "Tacit Labs" } = Astro.props;
                 }
             });
 
-            // Drop the class when the turn finishes so it can be retriggered.
             document.addEventListener("animationend", (e) => {
                 const t = e.target as Element | null;
                 if (t?.matches("[data-logo]")) t.classList.remove("logo--spin");
             });
 
-            // Close on Escape, and when the viewport grows past the breakpoint
-            // (so it can't stay open behind the desktop nav).
             document.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") setOpen(false);
             });
