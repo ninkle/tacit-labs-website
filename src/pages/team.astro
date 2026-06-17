@@ -19,19 +19,20 @@ import nicole from "../images/nicole.jpg";
             <div class="grid grid-cols-8 min-[810px]:grid-cols-16 gap-gutter">
                 <div
                     data-team
-                    class="col-span-8 grid grid-cols-2 gap-gutter min-[810px]:col-span-12 min-[810px]:col-start-3 min-[810px]:flex min-[810px]:flex-row min-[810px]:gap-1 min-[1200px]:col-span-8 min-[1200px]:col-start-5"
+                    class="col-span-8 grid grid-cols-2 gap-gutter min-[810px]:col-span-12 min-[810px]:col-start-3 min-[810px]:grid-cols-4 min-[810px]:gap-1 min-[1200px]:col-span-8 min-[1200px]:col-start-5"
                 >
                     <div
                         data-card
                         class="flex flex-col justify-start grow gap-1.5"
                     >
-                        <div class="aspect-5/7">
+                        <div class="aspect-5/7 relative overflow-hidden">
                             <Picture
                                 src={nicole}
                                 alt="Nicole Fitzgerald"
                                 loading="eager"
                                 fetchpriority="high"
-                                class="w-full h-full object-cover"
+                                pictureAttributes={{ class: "contents" }}
+                                class="team-photo absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 ease-out"
                             />
                         </div>
                         <div class="flex flex-col items-start gap-3 text-left">
@@ -68,13 +69,14 @@ import nicole from "../images/nicole.jpg";
                         data-card
                         class="flex flex-col justify-start grow gap-1.5"
                     >
-                        <div class="aspect-5/7">
+                        <div class="aspect-5/7 relative overflow-hidden">
                             <Picture
                                 src={annemarie}
                                 alt="Anne Marie Droste"
                                 loading="eager"
                                 fetchpriority="high"
-                                class="w-full h-full object-cover"
+                                pictureAttributes={{ class: "contents" }}
+                                class="team-photo absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 ease-out"
                             />
                         </div>
                         <div class="flex flex-col items-start gap-3 text-left">
@@ -111,13 +113,14 @@ import nicole from "../images/nicole.jpg";
                         data-card
                         class="flex flex-col justify-start grow gap-1.5"
                     >
-                        <div class="aspect-5/7">
+                        <div class="aspect-5/7 relative overflow-hidden">
                             <Picture
                                 src={max}
                                 alt="Max Marion"
                                 loading="eager"
                                 fetchpriority="high"
-                                class="w-full h-full object-cover"
+                                pictureAttributes={{ class: "contents" }}
+                                class="team-photo absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 ease-out"
                             />
                         </div>
                         <div class="flex flex-col items-start gap-3 text-left">
@@ -154,13 +157,14 @@ import nicole from "../images/nicole.jpg";
                         data-card
                         class="flex flex-col justify-start grow gap-1.5"
                     >
-                        <div class="aspect-5/7">
+                        <div class="aspect-5/7 relative overflow-hidden">
                             <Picture
                                 src={katie}
                                 alt="Katie-Rose Skelly"
                                 loading="eager"
                                 fetchpriority="high"
-                                class="w-full h-full object-cover"
+                                pictureAttributes={{ class: "contents" }}
+                                class="team-photo absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 ease-out"
                             />
                         </div>
                         <div class="flex flex-col items-start gap-3 text-left">
@@ -250,6 +254,14 @@ import nicole from "../images/nicole.jpg";
             </div>
         </div>
     </main>
+
+    <style>
+        /* JS adds `is-loaded` once the photo has decoded; the markup ships at
+           opacity-0 so the image fades in instead of popping. */
+        .team-photo.is-loaded {
+            opacity: 1;
+        }
+    </style>
 
     <script>
         import { gsap } from "gsap";
@@ -358,10 +370,29 @@ import nicole from "../images/nicole.jpg";
             });
         }
 
+        // Fade each photo in once it has decoded. Images that are already
+        // complete (e.g. served from cache, or arriving via a client-side
+        // navigation where they were preloaded) are revealed immediately so
+        // they never get stuck invisible.
+        function initPhotos() {
+            const imgs =
+                document.querySelectorAll<HTMLImageElement>(".team-photo");
+            imgs.forEach((img) => {
+                if (img.complete && img.naturalWidth > 0) {
+                    img.classList.add("is-loaded");
+                    return;
+                }
+                const reveal = () => img.classList.add("is-loaded");
+                img.addEventListener("load", reveal, { once: true });
+                img.addEventListener("error", reveal, { once: true });
+            });
+        }
+
         // Run on first load AND after every ClientRouter navigation. Astro only
         // evaluates a page's module script once, so without this the hover setup
         // would never run when arriving at /team via a client-side navigation.
         document.addEventListener("astro:page-load", initTeam);
+        document.addEventListener("astro:page-load", initPhotos);
 
         // Tear down before the DOM is swapped away so the matchMedia's
         // window/resize listeners don't accumulate across navigations.
