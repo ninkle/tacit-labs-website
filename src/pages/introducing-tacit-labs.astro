@@ -14,14 +14,11 @@ import blog001 from "../images/blog001.jpg";
                 <a href="#search-algorithms" class="toc-link font-mono font-light text-[11px] leading-[150%] text-black/30 pl-3 border-l border-transparent transition-colors duration-200">
                     Biotech companies are inefficient search algorithms and biological experiments are expensive verifiers
                 </a>
-                <a href="#agentic-systems" class="toc-link font-mono font-light text-[11px] leading-[150%] text-black/30 pl-3 border-l border-transparent transition-colors duration-200">
-                    Agentic systems are making search parallelizable and computational models for chemistry and biology are making verification fast and cheap
+                <a href="#agents-parallelize" class="toc-link font-mono font-light text-[11px] leading-[150%] text-black/30 pl-3 border-l border-transparent transition-colors duration-200">
+                    Agents parallelize search and biochemical models compress experimental feedback
                 </a>
-                <a href="#compute-not-headcount" class="toc-link font-mono font-light text-[11px] leading-[150%] text-black/30 pl-3 border-l border-transparent transition-colors duration-200">
-                    The next generation of biotech companies will scale with compute, not headcount
-                </a>
-                <a href="#tacit-infrastructure" class="toc-link font-mono font-light text-[11px] leading-[150%] text-black/30 pl-3 border-l border-transparent transition-colors duration-200">
-                    Tacit Labs is building infrastructure to enable this kind of company
+                <a href="#verification-stack" class="toc-link font-mono font-light text-[11px] leading-[150%] text-black/30 pl-3 border-l border-transparent transition-colors duration-200">
+                    The verification stack for biology requires evaluation across every link of the decision chain
                 </a>
                 <a href="#zero-person-biotechs" class="toc-link font-mono font-light text-[11px] leading-[150%] text-black/30 pl-3 border-l border-transparent transition-colors duration-200">
                     Towards one million zero-person biotechs
@@ -52,109 +49,184 @@ import blog001 from "../images/blog001.jpg";
                 </div>
                 <div class="text-[15px] tracking-[1%] font-display leading-[150%] px-gutter min-[810px]:px-0 pb-30 min-[810px]:pb-50 flex flex-col gap-4">
                     <p>
-                    Biology offers greater potential to improve human life than any other scientific domain.
-                    It's also the most complex — demanding measurement, integration, and reasoning across multiple scales,
-                    over hundreds of variables interacting simultaneously within systems we still only partially understand.
+                        Biology offers greater potential to improve human life than any other scientific domain.
+                        It's also the most complex — demanding measurement, integration, and reasoning across multiple scales,
+                        over hundreds of variables interacting within systems that we still only partially understand.
                     </p>
 
                     <p>
-                    The ultimate test of our understanding is our ability to systematically intervene on those systems
-                    without destabilizing the whole — that is, to identify a biological mechanism, create a drug against it,
-                    and cure a disease in a human being. The problem is that reaching this test (clinical proof-of-concept in humans)
-                    takes approximately 10 years and typically costs around $100M.
+                        Drug development is the ultimate test of our ability to intervene on those systems and one of the highest
+                        leverage activities humans can undertake. The discovery of new mechanisms and the design of new drugs have
+                        given us protection from parasites and pathogens, cured many once deadly diseases, and given us greater
+                        autonomy over our personal well-being than at any point in history. Today, however, the completion of this
+                        test (the clinical trial) takes us around 10 years and costs approximately $100M. Coupled with the fact that
+                        programs that enter the clinic still fail at a rate of 90%, the cost of verification is exceedingly high.
                     </p>
 
                     <p>
-                    Large-scale reasoning systems have progressed most rapidly in domains where data and verification are cheap
-                    and abundant. In code, a proposed solution can be executed against tests, checked by a compiler, benchmarked
-                    for performance, or evaluated in a sandbox. In math, formal systems like Lean can turn proofs into machine-checkable
-                    objects, where each step must satisfy the rules of the system. The feedback is not perfect, and it does not cover
-                    all scientific reasoning, but it is cheap, repeatable, and tightly coupled to the task.
+                        AI has progressed most rapidly in domains where verification is fast and abundant. In code, a proposed
+                        solution can be checked by a compiler, executed against tests, benchmarked for performance, or evaluated
+                        in a sandbox. In math, formal systems like Lean can turn proofs into machine-checkable objects, where each
+                        step must satisfy the rules of the system. Biology does not yet have an equivalent verification loop.
+                        We founded Tacit to build it.
                     </p>
 
                     <p>
-                    Biology does not yet have an equivalent loop. We founded Tacit to build that loop, unlocking faster, denser feedback
-                    for large-scale agentic systems to train and deploy on the full gamut of drug discovery and development. We are starting
-                    with designing long-horizon evaluations across this pipeline [link to OAI] and will systematically build out the tooling,
-                    data and infrastructure to enable autonomous drug development at scale.
+                        Faster, denser feedback for large-scale agentic systems is the greatest bottleneck in training and
+                        meaningfully deploying models in this domain. We are starting with long-horizon evaluations across the
+                        drug discovery and development pipeline to understand exactly when and where agentic systems fail.
                     </p>
 
                     <h2 id="search-algorithms" class="font-display text-lg leading-[130%] text-left mt-4">Biotech companies are inefficient search algorithms and biological experiments are expensive verifiers</h2>
+
                     <p>
-                        Making a drug requires searching through a space of dependent choices: target, modality, molecule, assay,
+                        Making a drug is a uniquely difficult process to model; in fact, it is one of the longest time-horizon
+                        tasks that we regularly undertake.
+                    </p>
+
+                    <p>
+                        Drug discovery is a search through a space of dependent choices: target, modality, molecule, assay,
                         biomarker, patient population, and development path. Each decision constrains the next, and a single wrong
-                        assumption can invalidate the chain. The form factor of today's biotech companies is ill-suited to search
-                        across the full space of possible drug programs. The company itself is already a commitment: to a thesis, a team,
-                        a platform, a set of tools, and a narrow region of biological possibility. Exploring another branch often means
-                        assembling different expertise, running different experiments, finding different vendors, and raising more capital.
-                        In other words, we run a slow, process-heavy, sequential search algorithm, where changing course often means
-                        rebuilding from an earlier assumption.
+                        assumption can invalidate the chain. The structure of today's biotech companies is no match for the scale
+                        of this search space or its combinatorial complexity. At inception, the company itself is already a
+                        commitment: to a thesis, a team, a platform, a set of tools, and a narrow region of biology. Exploring
+                        another branch often means assembling new expertise, running new experiments, finding a different set of
+                        vendors, and raising more capital. Current biotechs are slow, process-heavy, sequential search algorithms,
+                        where the cost of changing course is starting over from the beginning.
                     </p>
-
-                    <p>The feedback loop is just as difficult. Drug development does not have a cheap test that says whether a
-                        program is right. It has a sequence of proxies, each more expensive than the last, and each only partially
-                        predictive of the answer that matters. A molecule can bind cleanly and fail in cells. It can work in cells
-                        and fail in animals. It can work in animals and fail in humans. It can look safe in early studies and
-                        fail when tested in the right patients, at the right dose, over the right time horizon. The strongest
-                        verifier is human biology, and it arrives late. Until then, teams are forced to make expensive decisions
-                        from incomplete signals.
-                    </p>
-
-                    <h2 id="agentic-systems" class="font-display text-lg leading-[130%] text-left mt-4">Agentic systems are making search parallelizable and computational models for chemistry and biology are making verification fast and cheap
-                    </h2>
 
                     <p>
-                        AI changes both sides of the problem. Reasoning models and agents make search less constrained by the
-                        team a company has hired. Instead of one narrow group exploring one narrow path, a system can instantiate
-                        many forms of expertise in parallel: chemist, biologist, translational scientist, clinical strategist.
-                        It can read more, branch more, preserve more context, and compare more possible paths before committing
-                        scarce evidence.
+                        The feedback loop is just as difficult — there is no simple test to tell you if a drug will work. Drug
+                        development works with a sequence of increasingly slow and expensive proxies that give you partial signal
+                        into what matters. A molecule can bind cleanly and fail in cells. It can work in cells and fail in animals.
+                        It can work in animals and fail in humans. It can look safe in early studies and fail when tested in the
+                        right patients, at the right dose, over the right time horizon. The strongest verifier is testing a drug
+                        in a human being, which for a number of reasons (among them — safety, ethics, cost) is reserved for the
+                        final stage of the process. Until then, teams are forced to make expensive decisions from weak and often
+                        conflicting signals.
                     </p>
+
+                    <h2 id="agents-parallelize" class="font-display text-lg leading-[130%] text-left mt-4">Agents parallelize search and biochemical models compress experimental feedback</h2>
+
                     <p>
-                        Computational chemistry models and human biology models change the feedback side of the loop. They
-                        compress large histories of experiments into in silico signals: how molecules bind, fold, clear,
-                        distribute, and fail; how cells, pathways, tissues, and patients respond under different conditions.
-                        They do not replace the wet lab or the clinic. But they let more of the search happen against learned
-                        approximations of biology and chemistry, allowing agentic systems to quickly and cheaply garner signal
-                        along their path, backtrack if necessary, and orient towards the most promising routes before the strongest,
-                        most expensive verifiers are invoked.
-                    </p>
-                    <h2 id="compute-not-headcount" class="font-display text-lg leading-[130%] text-left mt-4">The next generation of biotech companies will scale with compute, not headcount</h2>
-                    <p>In the limit, these forces compress drug discovery and development to a function of data, compute, 
-                        experiments, and token spend. The shape of company that will bring the next generation of drugs to 
-                        market will look fundamentally different as a result — model-centric, massively parallelized, and 
-                        increasingly autonomous. 
+                        We now have increasingly powerful foundation models for modeling biology at the molecular, cell and tissue
+                        level. These models compress large datasets of experimental outcomes into <em>in silico</em> signals: how
+                        molecules bind, fold, clear, distribute, and fail; how cells, pathways, tissues, and patients respond under
+                        different conditions.
                     </p>
 
-                    <p>Compute will touch every consequential decision in the pipeline: what product to build; which 
-                        biology to trust; what experiments to run, how they should be orchestrated, and how to interpret 
-                        the results; which molecules or modalities to advance; when to stop; which patients to enroll, 
-                        and how to design the trial. A single person equipped with a laptop and a credit card will be 
-                        able to specify a disease area, target, or therapeutic hypothesis, then spin up agentic 
-                        systems to explore the surrounding program space. 
+                    <p>
+                        These <em>in silico</em> signals are increasingly being looked to as cheaper, faster, and soon more reliable
+                        stand-ins for wet lab experimentation. This allows agentic systems to quickly and cheaply garner signal
+                        against learned approximations of biology and chemistry, backtrack if necessary, and orient towards the most
+                        promising routes before the strongest, most expensive verifiers are invoked.
                     </p>
 
-                    <p>Once a search is specified in software, the bandwidth a single scientist has to spend tending it
-                         drops sharply, and programs that once ran sequentially can run side by side. As each program increases
-                          in autonomy, its marginal cost falls, increasing the total number of concurrent programs that can be run 
-                          under a fixed cost. Furthermore, this paradigm allows insight uncovered by each program to be shared 
-                          across the whole portfolio — positive results, negative results, and outstanding ambiguity. Each cycle 
-                          refines direction, raises the quality of the next hypothesis, and lifts its probability of success. This
-                          accumulates a base of compounding knowledge that cannot exist in the sequential model.</p>
+                    <p>
+                        While these models serve as increasingly strong <em>intermediate</em> verifiers, they hold little
+                        information as to how the final outcome of the program will play out. Even the cell-based and animal-based
+                        experiments they aim to replace have poor predictive power over whether a drug will perform well in human
+                        biology.
+                    </p>
 
-                    <h2 id="tacit-infrastructure" class="font-display text-lg leading-[130%] text-left mt-4">Tacit Labs is building infrastructure to enable this kind of company</h2>
+                    <p>
+                        The full impact of these advances will be unlocked when we can optimize the drug development process as a
+                        set of interconnected decisions that correlate to human outcomes. Dense, intermediate rewards must correlate
+                        to sparse, long-horizon rewards, allowing agentic systems to efficiently learn end-to-end.
+                    </p>
+
+                    <h2 id="verification-stack" class="font-display text-lg leading-[130%] text-left mt-4">The verification stack for biology requires evaluation across every link of the decision chain</h2>
+
+                    <p>
+                        Drug development will not be transformed by isolated capability gains. It will be transformed by composing
+                        atomic tasks into a decision loop that makes stronger, more well-informed choices along the chain of
+                        decisions that lead to a drug.
+                    </p>
+
+                    <p>
+                        Tacit is starting by building realistic, long-horizon evaluations that test whether AI systems can make
+                        linked decisions across drug discovery and development. These evaluations combine human reasoning and task
+                        design with well-calibrated tools (biological foundation models, raw biological readouts, and
+                        easy-to-access lab infrastructure).
+                    </p>
+
+                    <p>How we do this:</p>
+
+                    <ol class="list-decimal list-outside pl-5 flex flex-col gap-3">
+                        <li>
+                            We build functional, long-horizon evaluations that represent the full trajectory of discovering and
+                            developing a drug. We bring these simulated evaluations as close to reality as possible, ensuring that
+                            they are multimodal, information-dense, and augmented with real-world experimental data and contextual
+                            artifacts.
+                        </li>
+                        <li>
+                            These evaluations allow us to understand model performance, exposing where agentic systems are weakest
+                            and where corresponding experimental and human data is most needed, which we in turn supply.
+                        </li>
+                        <li>
+                            As models and agents become more capable on real-world research tasks, we will build out the
+                            infrastructure that enables them to operate safely and effectively in real-world research environments.
+                        </li>
+                        <li>
+                            We can continue to run the evaluation loop on different problems and parts of the stack to expose new
+                            gaps and weaknesses, making the end-to-end stack more capable and the verification loop faster, cheaper
+                            and closer to reality.
+                        </li>
+                    </ol>
+
+                    <p>
+                        In short, we build evaluations that leverage verification methods from across the ecosystem and stitch them
+                        together into increasingly long and more realistic drug development loops. Over time, these loops converge
+                        to the inference-time infrastructure required to enable autonomous drug discovery at scale.
+                    </p>
+
                     <h2 id="zero-person-biotechs" class="font-display text-lg leading-[130%] text-left mt-4">Towards one million zero-person biotechs</h2>
+
                     <p>
-                    We are a team of researchers, engineers, scientists, and operators
-                    who have trained frontier language models, designed and scaled
-                    experimental platforms, and brought drugs to the clinic. We are
-                    actively <span
-                        ><a class="underline" href="/join-us">hiring.</a></span
-                    >
-                </p>
+                        In the limit, these forces will compress drug development to a function of compute.
+                    </p>
+
+                    <p>
+                        The shape of company that will bring the next generation of drugs to market will look radically different
+                        as a result — model-centric, massively parallelized, and increasingly autonomous. We are building towards
+                        a future in which a single person with a laptop and a credit card will be able to specify a disease area,
+                        target or therapeutic hypothesis and then spin up a team of agents to explore and deliver a human-ready
+                        molecule.
+                    </p>
+
+                    <p>
+                        Today, starting a biotech company is a large commitment to a narrow thesis, and what problems get worked
+                        on is a function of how many teams and how much capital can be assembled around them. Resources concentrate
+                        in a small number of these but most never get a shot.
+                    </p>
+
+                    <p>
+                        In the future, the number of biotechs will no longer be constrained by human capital — bottlenecked by
+                        organizational capacity or scientific expertise. Thousands of new biotechs will pursue millions of
+                        therapeutic hypotheses in parallel — including rare diseases and indications that are not popular or
+                        perceived as economically viable today.
+                    </p>
+
+                    <p>
+                        The shift from scientific scarcity to abundance is sure to change the practice of medicine and our
+                        understanding of disease — from personalized medicines and combination therapies to functional consumer
+                        products and over the counter compounds.
+                    </p>
+
+                    <p>
+                        To get there, our scientific infrastructure will need to be radically reconfigured to be used by models
+                        and agents for massively parallel discovery and development. This needs to start with evaluations and
+                        tooling that captures context and verifies results across the end-to-end decision chain.
+                    </p>
+
+                    <p>
+                        There is a long, exciting road ahead of us, and we are just getting started. We are looking for ambitious,
+                        creative people that believe in this vision and are <a class="underline" href="mailto:nicole@tacitlabs.co">hiring</a> for a
+                        number of positions across research, engineering, and operations.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
     </main>
 </Layout>
 
