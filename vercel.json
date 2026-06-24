@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/catalogue",
+      "destination": "https://data-portal-theta.vercel.app/catalogue"
+    },
+    {
+      "source": "/catalogue/:path*",
+      "destination": "https://data-portal-theta.vercel.app/catalogue/:path*"
+    }
+  ]
+}
