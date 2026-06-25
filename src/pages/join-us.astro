@@ -30,8 +30,23 @@ const rendered = await Promise.all(jobs.map((j) => render(j)));
                                         {job.data.status}
                                     </span>
                                 </summary>
-                                <div class="job-prose pb-10 pt-2">
+                                <div class="job-prose pt-2">
                                     <Content />
+                                </div>
+                                <div class="pb-10 pt-6 flex flex-col gap-3 max-w-[56ch]">
+                                    <p class="font-mono font-light text-xs uppercase tracking-normal">
+                                        Apply
+                                    </p>
+                                    <p class="font-display text-sm leading-[155%]">
+                                        Send us your resume and a few lines about who you are,
+                                        what you've done, and why you're interested in working with us.
+                                    </p>
+                                    <a
+                                        href={`mailto:jobs@tacitlabs.co?subject=${encodeURIComponent(job.data.title)}`}
+                                        class="nav-underline font-mono font-light text-xs w-fit mt-1"
+                                    >
+                                        jobs@tacitlabs.co
+                                    </a>
                                 </div>
                             </details>
                         );
