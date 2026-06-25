@@ -2,131 +2,119 @@
 import Layout from "../layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
 
-// To add or edit job postings, see src/content/jobs/ — one .md file per role.
 const jobs = (await getCollection("jobs")).sort(
     (a, b) => (a.data.order ?? 999) - (b.data.order ?? 999),
 );
 const rendered = await Promise.all(jobs.map((j) => render(j)));
 ---
 
-<Layout title="Tacit Labs">
-    <main
-        class="p-gutter flex flex-col justify-between items-start h-screen max-h-dvh relative overflow-hidden"
-    >
-        <div class="flex flex-col justify-center w-full grow">
-            <div class="grid grid-cols-16 gap-gutter w-full">
-                <div class="col-span-16">
-                    <h3
-                        class="uppercase font-mono font-light text-xs tracking-normal leading-normal"
-                    >
-                        Opportunities
-                    </h3>
-                </div>
-                <div
-                    id="research-titles"
-                    class="flex flex-col gap-0 col-span-16 w-full"
-                >
-                    {
-                        jobs.map((job) => (
-                            <div
-                                data-title
-                                data-target={job.id}
-                                class="grid grid-cols-16 gap-gutter w-full cursor-pointer transition-opacity duration-200"
-                            >
-                                <p class="col-span-12 flex font-display text-md">
-                                    {job.data.title}
-                                </p>
-                                <div class="col-span-4 w-full text-right flex flex-row justify-end font-display text-md">
-                                    {job.data.status}
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-        </div>
-        <div class="grid grid-cols-16 gap-gutter w-full items-start">
-            <div class="col-span-6 col-start-1">
-                <h3
-                    data-research-header
-                    class="uppercase font-mono font-light text-xs tracking-normal leading-normal opacity-0 invisible transition-opacity duration-200"
-                >
-                    Summary
-                </h3>
-            </div>
-
-            {
-                /* Synopsis panels stacked in one cell so the row height is the
-                tallest panel — no layout shift when toggling visibility. */
-            }
-            <div class="col-span-6 col-start-1 grid">
+<Layout title="Tacit Labs — Careers">
+    <main class="p-gutter flex flex-col min-h-dvh">
+        <div class="mt-14 min-[810px]:mt-18 grow">
+            <p
+                class="font-mono font-light text-xs uppercase tracking-normal mb-4"
+            >
+                Opportunities
+            </p>
+            <div>
                 {
                     jobs.map((job, i) => {
                         const { Content } = rendered[i];
                         return (
-                            <div
-                                data-synopsis
-                                data-id={job.id}
-                                class="col-start-1 row-start-1 font-display text-sm tracking-normal leading-normal opacity-0 invisible transition-opacity duration-200 [&>p]:font-display [&>p]:text-sm [&>p]:tracking-normal [&>p]:leading-normal"
-                            >
-                                <Content />
-                            </div>
+                            <details class="job-item border-t border-[#C4C4C4]">
+                                <summary class="grid grid-cols-8 min-[810px]:grid-cols-16 gap-gutter w-full py-3 cursor-pointer items-baseline">
+                                    <span class="col-span-6 min-[810px]:col-span-14 font-display text-md">
+                                        {job.data.title}
+                                    </span>
+                                    <span class="col-span-2 min-[810px]:col-span-2 text-right font-mono font-light text-xs">
+                                        {job.data.status}
+                                    </span>
+                                </summary>
+                                <div class="job-prose pb-10 pt-2">
+                                    <Content />
+                                </div>
+                            </details>
                         );
                     })
                 }
+                <div class="border-t border-[#C4C4C4]"></div>
             </div>
         </div>
     </main>
 </Layout>
 
-<script>
-    // Wrapped in astro:page-load so the hover interaction is wired up both on
-    // first load and after every ClientRouter navigation. Astro evaluates this
-    // module script only once, so without this the listeners would never bind
-    // when arriving at /join-us via a client-side navigation. Listeners are
-    // bound to page elements that get swapped out on navigation, so they're
-    // garbage-collected with the old DOM — no manual teardown needed.
-    function initJoinUs() {
-        const root = document.getElementById("research-titles");
-        const titles = root?.querySelectorAll<HTMLElement>("[data-title]");
-        // Every revealable element (synopsis panels).
-        const panels =
-            document.querySelectorAll<HTMLElement>("[data-synopsis]");
-        // The "SYNOPSIS" / "AUTHORS" column headers, shown only while hovering.
-        const headers = document.querySelectorAll<HTMLElement>(
-            "[data-research-header]",
-        );
-
-        function show(id: string | null) {
-            panels.forEach((p) => {
-                const active = p.dataset.id === id;
-                p.classList.toggle("opacity-0", !active);
-                p.classList.toggle("invisible", !active);
-            });
-            headers.forEach((h) => h.classList.remove("opacity-0", "invisible"));
-            // Dim the titles that aren't active.
-            titles?.forEach((t) =>
-                t.classList.toggle("opacity-40", t.dataset.target !== id),
-            );
-        }
-
-        function hideAll() {
-            panels.forEach((p) => p.classList.add("opacity-0", "invisible"));
-            headers.forEach((h) => h.classList.add("opacity-0", "invisible"));
-            titles?.forEach((t) => t.classList.remove("opacity-40"));
-        }
-
-        // Hovering a title reveals its synopsis + authors (and switches between).
-        titles?.forEach((t) => {
-            t.addEventListener("mouseenter", () =>
-                show(t.dataset.target ?? null),
-            );
-        });
-
-        // Leaving the list of titles hides everything. Moving between titles
-        // stays inside `root`, so it doesn't fire.
-        root?.addEventListener("mouseleave", hideAll);
+<style>
+    /* Remove browser default disclosure triangle */
+    .job-item > summary {
+        list-style: none;
+    }
+    .job-item > summary::-webkit-details-marker {
+        display: none;
     }
 
-    document.addEventListener("astro:page-load", initJoinUs);
+    /* Markdown: h2 → mono label, matches site's section header style */
+    .job-prose :global(h2) {
+        font-family: var(--font-mono);
+        font-weight: 300;
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: normal;
+        line-height: normal;
+        margin-top: 1.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Body paragraphs */
+    .job-prose :global(p) {
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        line-height: 155%;
+        max-width: 56ch;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Bullet lists */
+    .job-prose :global(ul) {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        margin-bottom: 0.5rem;
+    }
+    .job-prose :global(li) {
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        line-height: 155%;
+        max-width: 56ch;
+        padding-left: 1.25rem;
+        position: relative;
+    }
+    .job-prose :global(li)::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        font-family: var(--font-display);
+    }
+
+    /* Strong within body */
+    .job-prose :global(strong) {
+        font-weight: 400;
+    }
+</style>
+
+<script>
+    // Close all other items when one opens, so only one is active at a time.
+    function initJobList() {
+        const items = document.querySelectorAll<HTMLDetailsElement>("details.job-item");
+        items.forEach((item) => {
+            item.addEventListener("toggle", () => {
+                if (item.open) {
+                    items.forEach((other) => {
+                        if (other !== item) other.open = false;
+                    });
+                }
+            });
+        });
+    }
+
+    document.addEventListener("astro:page-load", initJobList);
 </script>
