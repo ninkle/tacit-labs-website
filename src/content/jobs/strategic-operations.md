@@ -8,7 +8,7 @@ order: 1
 
 Tacit Labs is building data, evaluations, and research environments unlocking scientific discovery capabilities for frontier models. Our goal is to help AI systems make progress on real, long-horizon problems in biology, chemistry, and drug development. We work with expert scientists to create high-quality tasks, datasets, and workflows that help AI systems reason through real problems in biology, chemistry, and drug development.
 
-We’re looking for an Project Manager to own customer projects end-to-end. This person will be responsible for making sure our most important projects are delivered on time, at a high quality bar, and with the level of rigor expected by the top AI labs in the world.
+We’re looking for a Strategic Operations Lead to own customer projects end-to-end. This person will be responsible for making sure our most important projects are delivered on time, at a high quality bar, and with the level of rigor expected by the top AI labs in the world.
 
 This is an unusually high-impact role for someone early in their career. You will work directly with the founders on Tacit’s most critical customer work, sit close to product and research decisions, and help define the operating system for a fast-growing company.
 
