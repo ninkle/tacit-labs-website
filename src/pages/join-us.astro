@@ -1,18 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
 
-// One entry per paper. Hovering a title reveals its synopsis + authors below.
-const papers = [
-    {
-        id: "ih-challenge",
-        title: "Test Dummy",
-        date: "Open",
-        synopsis:
-            "We're looking for a motivated, high-impact individual to join our team at the front line — literally. As a Crash Test Dummy, you'll be the first to experience our products, our walls, and occasionally our windshields. No two days are the same, though most of them end the same way.",
-        authors:
-            "Chuan Guo, Juan Felipe Ceron Uribe, Sicheng Zhu, Christopher A. Choquette-Choo, Steph Lin, Nikhil Kandpal, Milad Nasr, Rai (Michael Pokorny), Sam Toyer, Miles Wang, Yaodong Yu, Alex Beutel, Kai Xiao",
-    },
-];
+// To add or edit job postings, see src/content/jobs/ — one .md file per role.
+const jobs = (await getCollection("jobs")).sort(
+    (a, b) => (a.data.order ?? 999) - (b.data.order ?? 999),
+);
+const rendered = await Promise.all(jobs.map((j) => render(j)));
 ---
 
 <Layout title="Tacit Labs">
@@ -33,17 +27,17 @@ const papers = [
                     class="flex flex-col gap-0 col-span-16 w-full"
                 >
                     {
-                        papers.map((p) => (
+                        jobs.map((job) => (
                             <div
                                 data-title
-                                data-target={p.id}
+                                data-target={job.id}
                                 class="grid grid-cols-16 gap-gutter w-full cursor-pointer transition-opacity duration-200"
                             >
                                 <p class="col-span-12 flex font-display text-md">
-                                    {p.title}
+                                    {job.data.title}
                                 </p>
                                 <div class="col-span-4 w-full text-right flex flex-row justify-end font-display text-md">
-                                    {p.date}
+                                    {job.data.status}
                                 </div>
                             </div>
                         ))
@@ -67,15 +61,18 @@ const papers = [
             }
             <div class="col-span-6 col-start-1 grid">
                 {
-                    papers.map((p) => (
-                        <p
-                            data-synopsis
-                            data-id={p.id}
-                            class="col-start-1 row-start-1 font-display text-sm tracking-normal leading-normal opacity-0 invisible transition-opacity duration-200"
-                        >
-                            {p.synopsis}
-                        </p>
-                    ))
+                    jobs.map((job, i) => {
+                        const { Content } = rendered[i];
+                        return (
+                            <div
+                                data-synopsis
+                                data-id={job.id}
+                                class="col-start-1 row-start-1 font-display text-sm tracking-normal leading-normal opacity-0 invisible transition-opacity duration-200 [&>p]:font-display [&>p]:text-sm [&>p]:tracking-normal [&>p]:leading-normal"
+                            >
+                                <Content />
+                            </div>
+                        );
+                    })
                 }
             </div>
         </div>
