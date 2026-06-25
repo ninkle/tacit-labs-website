@@ -41,6 +41,3 @@ This is an unusually high-impact role for someone early in their career. You wil
 - You want a role where strong performance quickly turns into more responsibility.
 - You’re excited by the idea of helping frontier AI labs build better systems for science.
 
-## Why this role matters
-
-Delivery is one of Tacit’s core advantages. Our work only matters if we can reliably turn complex scientific workflows into high-quality outputs for the most demanding AI customers. The person in this role will directly shape how Tacit executes, how customers experience us, and how our delivery work feeds back into product, research, engineering, and GTM.

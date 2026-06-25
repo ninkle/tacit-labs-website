@@ -40,9 +40,3 @@ The ideal person is excited by ambitious internal tools, excellent user experien
 - You’re excited by “tools for thought” applied to scientific reasoning and model evaluation.
 - You want to work directly with users, ship quickly, and see your product immediately affect the quality and speed of real customer work.
 - You’ve worked on an evals product, AI workflow product, internal platform, or expert-facing data product.
-
-## Why this role matters
-
-Tacit’s platform is the operating system for how we produce scientific evals. It determines how quickly experts can work, how consistently we can maintain quality, and how effectively we can turn expert reasoning into datasets and environments for frontier AI labs.
-
-The person in this role will shape one of the most important products inside the company: the system that lets Tacit scale high-quality scientific evaluation work without losing the judgment, nuance, and tacit knowledge that make the work valuable in the first place.

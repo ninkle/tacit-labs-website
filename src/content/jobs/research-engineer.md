@@ -41,8 +41,3 @@ This role is ideal for someone who has worked on RL environments, agent systems,
 - You have enough biology or chemistry knowledge to be dangerous, and you’re excited to learn more.
 - You want to work at the boundary of frontier AI, scientific reasoning, and practical engineering.
 
-## Why this role matters
-
-The next generation of AI systems will need to do more than answer isolated questions. They will need to plan, use tools, evaluate evidence, recover from mistakes, and make progress over long horizons.
-
-Tacit’s environments are designed to make that possible in science. The person in this role will help build the systems that let AI labs train and evaluate agents on realistic scientific workflows — from short tool-use tasks to increasingly complex, multi-step problems in biology and drug development.
