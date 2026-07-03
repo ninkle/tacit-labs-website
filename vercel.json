@@ -8,6 +8,14 @@
     {
       "source": "/catalogue/:path*",
       "destination": "https://data-portal-theta.vercel.app/catalogue/:path*"
+    },
+    {
+      "source": "/apply",
+      "destination": "https://applications-portal-lake.vercel.app/apply"
+    },
+    {
+      "source": "/apply/:path*",
+      "destination": "https://applications-portal-lake.vercel.app/apply/:path*"
     }
   ]
 }
