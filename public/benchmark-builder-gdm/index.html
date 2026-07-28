@@ -19,13 +19,18 @@
       <img class="gate-logo" src="logo.svg" alt="Tacit Labs">
       <div class="eyebrow">Tacit Labs · Evaluation scoping</div>
       <h2 class="gate-title">Restricted access</h2>
-      <p class="gate-note">This page is not public. Enter the passphrase to continue.</p>
-      <form id="gate-form" autocomplete="off">
-        <input id="gate-input" type="password" inputmode="text" autocomplete="off"
-               spellcheck="false" placeholder="Passphrase" aria-label="Passphrase">
-        <button type="submit">Continue&nbsp;→</button>
+      <p class="gate-note">This page is not public. Sign in with your work email
+        and the passphrase you were sent.</p>
+      <form id="gate-form" autocomplete="on">
+        <input id="gate-email" type="email" autocomplete="email" spellcheck="false"
+               placeholder="you@google.com" aria-label="Work email" required>
+        <div class="gate-row">
+          <input id="gate-input" type="password" inputmode="text" autocomplete="current-password"
+                 spellcheck="false" placeholder="Passphrase" aria-label="Passphrase" required>
+          <button type="submit" id="gate-submit">Continue&nbsp;→</button>
+        </div>
       </form>
-      <div class="gate-error" id="gate-error" hidden>Incorrect passphrase. Please try again.</div>
+      <div class="gate-error" id="gate-error" hidden></div>
     </div>
   </div>
 
