@@ -1,5 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/benchmark-builder-gdm",
+      "destination": "/benchmark-builder-gdm/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/catalogue",
