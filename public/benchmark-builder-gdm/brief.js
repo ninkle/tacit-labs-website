@@ -6,9 +6,11 @@
   const { esc, el, CAPS, TOOLS } = M;
   if (!D || !Store) return;
 
-  /* Where finished scopes are POSTed. Leave empty to fall back to the
-     email + CSV handoff (works on static hosting with no backend). */
-  const SUBMIT_ENDPOINT = "";
+  /* Where finished scopes are POSTed. Same-origin on tacitlabs.co, rewritten
+     to the applications-portal project by the website's vercel.json, so there
+     is no CORS and no key in this file. Anywhere else (local preview) the path
+     404s and we fall back to the email + CSV handoff below. */
+  const SUBMIT_ENDPOINT = "/apply/api/scope";
   const CONTACT_EMAIL = "nicole@tacitlabs.co";
 
   const $ = id => document.getElementById(id);
@@ -111,6 +113,9 @@
         themesNeedingWetLabScreen: s.screens.map(r => r.label),
       },
       permalink: Store.permalink(),
+      /* Which build sent this, so a second customer-specific page is
+         separable in the table without guessing from the permalink. */
+      source: (location.pathname.split("/").filter(Boolean)[0] || "gapmap"),
       rows: buildRows(),
     };
   }
@@ -281,10 +286,16 @@
       body.appendChild(el("div", "m-head", `<h3>Scope submitted</h3><p>${esc(r.message || "")}</p>`));
       const box = el("div", "m-sent");
       box.innerHTML =
-        `<div class="m-sentrow"><span class="k">Scope file</span><span class="v">${esc(r.file || "")}</span></div>` +
+        (r.posted ? "" :
+          `<div class="m-sentrow"><span class="k">Scope file</span><span class="v">${esc(r.file || "")}</span></div>`) +
         `<div class="m-sentrow"><span class="k">Shareable link</span><span class="v"><input readonly id="perma" value="${esc(r.permalink || "")}"></span></div>`;
       body.appendChild(box);
       const acts = el("div", "m-sentacts");
+      if (r.posted && r.csv) {
+        const dl = el("button", "btn-ghost", "Download a copy");
+        dl.onclick = () => { r.csv(); dl.textContent = "Downloaded"; };
+        acts.appendChild(dl);
+      }
       const copy = el("button", "btn-ghost", "Copy link");
       copy.onclick = () => {
         const i = $("perma"); i.select();
@@ -354,10 +365,10 @@
       } catch (e) { posted = false; }
     }
 
-    download(fname, toCSV(payload.rows), "text/csv;charset=utf-8");
-    download(fname.replace(/\.csv$/, ".json"), JSON.stringify(payload, null, 2), "application/json");
-
     if (!posted) {
+      /* The handoff only falls back to the customer's mail client when the
+         submission didn't land, so a working submit is one click. */
+      download(fname, toCSV(payload.rows), "text/csv;charset=utf-8");
       const link = payload.permalink;
       const lines = [
         `Name: ${contact.name}`,
@@ -384,8 +395,10 @@
     lastResult = {
       file: fname,
       permalink: payload.permalink,
+      posted: posted,
+      csv: () => download(fname, toCSV(payload.rows), "text/csv;charset=utf-8"),
       message: posted
-        ? "Your scope has been sent to Tacit Labs. A copy has also been downloaded for your records. We will respond within two business days."
+        ? "Your scope has been received. We will respond within two business days."
         : "A copy of your scope has been downloaded, and an email to " + CONTACT_EMAIL +
           " has been opened. Attach the CSV if it was not added automatically, then send the email.",
     };
