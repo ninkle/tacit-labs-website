@@ -9,7 +9,7 @@
   /* Where finished scopes are POSTed. Leave empty to fall back to the
      email + CSV handoff (works on static hosting with no backend). */
   const SUBMIT_ENDPOINT = "";
-  const CONTACT_EMAIL = "evals@tacitlabs.co";
+  const CONTACT_EMAIL = "nicole@tacitlabs.co";
 
   const $ = id => document.getElementById(id);
   let step = "review";
@@ -268,10 +268,6 @@
         <label class="wide">Evaluation objective
           <textarea name="context" rows="3" placeholder="Models under evaluation, observed limitations, and the decisions or capabilities the evaluation should measure"></textarea>
         </label>
-        <label>Target timeline<select name="timeline">
-          <option value="">—</option><option>Exploring / no date</option>
-          <option>This quarter</option><option>Next quarter</option><option>Urgent (&lt; 1 month)</option>
-        </select></label>
         <label>Additional information<input name="notes" placeholder="Optional"></label>
       `;
       body.appendChild(f);
@@ -373,7 +369,6 @@
         `Estimated total evals: ${payload.summary.estimatedTotalEvals}`,
         "",
         contact.context ? `Context: ${contact.context}` : "",
-        contact.timeline ? `Timeline: ${contact.timeline}` : "",
         contact.notes ? `Notes: ${contact.notes}` : "",
         "",
         link.length < 1500 ? `Full scope: ${link}` : "(Scope attached as CSV — link too long to inline.)",
