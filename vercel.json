@@ -5,6 +5,11 @@
       "source": "/benchmark-builder-gdm",
       "destination": "/benchmark-builder-gdm/",
       "permanent": false
+    },
+    {
+      "source": "/benchmark-builder-nvidia",
+      "destination": "/benchmark-builder-nvidia/",
+      "permanent": false
     }
   ],
   "rewrites": [

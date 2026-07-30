@@ -8,8 +8,13 @@
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="stylesheet" href="styles.css">
   <script>
-    try { if (sessionStorage.getItem("gapmap_unlocked") !== "1") document.documentElement.classList.add("locked"); }
-    catch (e) { document.documentElement.classList.add("locked"); }
+    /* Per-page key: sessionStorage is per-origin, so a shared key would let a
+       sign-in on one customer's builder unlock another's. */
+    try {
+      var _src = location.pathname.split("/").filter(Boolean)[0] || "gapmap";
+      if (sessionStorage.getItem("gapmap_unlocked_" + _src) !== "1")
+        document.documentElement.classList.add("locked");
+    } catch (e) { document.documentElement.classList.add("locked"); }
   </script>
 </head>
 <body>
@@ -23,7 +28,7 @@
         and the passphrase you were sent.</p>
       <form id="gate-form" autocomplete="on">
         <input id="gate-email" type="email" autocomplete="email" spellcheck="false"
-               placeholder="you@google.com" aria-label="Work email" required>
+               placeholder="you@work-email.com" aria-label="Work email" required>
         <div class="gate-row">
           <input id="gate-input" type="password" inputmode="text" autocomplete="current-password"
                  spellcheck="false" placeholder="Passphrase" aria-label="Passphrase" required>

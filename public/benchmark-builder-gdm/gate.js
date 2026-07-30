@@ -22,8 +22,18 @@
   var isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) ||
                 location.protocol === "file:";
 
+  var source = location.pathname.split("/").filter(Boolean)[0] || "gapmap";
+
+  /* Hint at the address we expect, so nobody on one customer's page is shown
+     another customer's domain. The rule itself is enforced server-side. */
+  var HINTS = {
+    "benchmark-builder-gdm": "you@google.com",
+    "benchmark-builder-nvidia": "you@nvidia.com"
+  };
+  if (email && HINTS[source]) email.placeholder = HINTS[source];
+
   function unlock() {
-    try { sessionStorage.setItem("gapmap_unlocked", "1"); } catch (e) {}
+    try { sessionStorage.setItem("gapmap_unlocked_" + source, "1"); } catch (e) {}
     document.documentElement.classList.remove("locked");
   }
 
@@ -60,7 +70,7 @@
       body: JSON.stringify({
         email: addr,
         passphrase: pass,
-        source: location.pathname.split("/").filter(Boolean)[0] || "gapmap",
+        source: source,
       }),
     }).then(function (res) {
       return res.json().catch(function () { return {}; }).then(function (body) {
