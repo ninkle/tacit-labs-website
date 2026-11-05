@@ -1,91 +1,77 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Picture } from "astro:assets";
+import ascii from "../images/tacit-ascii.png";
 import AsciiImage from "../components/AsciiImage.astro";
-import CustomerLogos from "../components/CustomerLogos.astro";
 ---
 
 <Layout title="Tacit Labs">
-    <main class="flex min-h-dvh flex-col">
-        <div class="homepage-hero relative flex flex-1 overflow-hidden">
-            <div
-                class="relative z-10 w-full min-[810px]:w-[550px] flex flex-col justify-end p-gutter"
+    <main
+        class="gap-gutter grid grid-cols-16 h-screen max-h-dvh relative overflow-hidden"
+    >
+        <div
+            class="col-span-16 min-[810px]:w-[550px] flex flex-col grow justify-end p-gutter"
+        >
+            <h1 class="font-display text-[30px] tracking-normal leading-normal">
+                Tacit Labs
+            </h1>
+            <p
+                class="font-mono font-light text-sm tracking-[-0.02em] leading-normal"
             >
-                <h1 class="font-display text-[30px] tracking-normal leading-normal">
-                    Tacit Labs
-                </h1>
-                <p
-                    class="font-mono font-light text-sm tracking-[-0.02em] leading-normal"
-                >
-                    Tacit is an applied research lab at the intersection of AI and
-                    the life sciences.<br /><br />
+                Tacit is an applied research lab at the intersection of AI and
+                the life sciences.<br /><br />
 
-                    The shape of company that will bring the next generation of
-                    drugs to market will be model-centric, massively parallelized,
-                    and increasingly autonomous. Tacit is working across the
-                    ecosystem to design the blueprint for this kind of company.<br
-                    /><br />
+                The shape of company that will bring the next generation of
+                drugs to market will be model-centric, massively parallelized,
+                and increasingly autonomous. Tacit is working across the
+                ecosystem to design the blueprint for this kind of company.<br
+                /><br />
 
-                    We are a team of researchers, engineers, scientists, and
-                    operators who have trained frontier language models, designed
-                    and scaled experimental platforms, and brought drugs to the
-                    clinic.<br /><br />
+                We are a team of researchers, engineers, scientists, and
+                operators who have trained frontier language models, designed
+                and scaled experimental platforms, and brought drugs to the
+                clinic.<br /><br />
 
-                    <span class="nav-underline"
-                        ><a href="/introducing-tacit-labs"
-                            >Read more <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.25"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                aria-hidden="true"
-                                class="inline-block size-[1em] align-[-0.125em]"
-                                ><path d="M7 17 17 7"></path><path d="M8 7h9v9"
-                                ></path></svg
-                            ></a
-                        ></span
-                    > and/or <span class="nav-underline"
-                        ><a href="/join-us"
-                            >join us <svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.25"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                aria-hidden="true"
-                                class="inline-block size-[1em] align-[-0.125em]"
-                                ><path d="M7 17 17 7"></path><path d="M8 7h9v9"
-                                ></path></svg
-                            ></a
-                        ></span
-                    >.
-                </p>
-            </div>
-            <AsciiImage
-                src="src/images/tacit-spiral.png"
-                cols={150}
-                radius={30}
-                class="absolute translate-x-[40%] translate-y-[-25%] opacity-30 right-0 h-[calc(90vh+50vw)]"
-            />
+                <span class="nav-underline"
+                    ><a href="/introducing-tacit-labs"
+                        >Read more <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.25"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            class="inline-block size-[1em] align-[-0.125em]"
+                            ><path d="M7 17 17 7"></path><path d="M8 7h9v9"
+                            ></path></svg
+                        ></a
+                    ></span
+                > and/or <span class="nav-underline"
+                    ><a href="/join-us"
+                        >join us <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.25"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            class="inline-block size-[1em] align-[-0.125em]"
+                            ><path d="M7 17 17 7"></path><path d="M8 7h9v9"
+                            ></path></svg
+                        ></a
+                    ></span
+                >.
+            </p>
         </div>
-        <CustomerLogos />
+        <AsciiImage
+            src="src/images/tacit-spiral.png"
+            cols={150}
+            radius={30}
+            class="absolute translate-x-[40%] translate-y-[-25%] opacity-30 right-0 h-[calc(90vh+50vw)]"
+        />
     </main>
-
-    <style>
-        .homepage-hero {
-            min-height: 34rem;
-            padding-top: 5rem;
-        }
-
-        @media (max-width: 809px) {
-            .homepage-hero {
-                min-height: 38rem;
-                padding-top: 7rem;
-            }
-        }
-    </style>
 
     <script>
         // The composition is tuned at a 2104x1256 viewport. Scale the ascii
