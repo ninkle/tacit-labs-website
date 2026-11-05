@@ -1,0 +1,122 @@
+---
+const customers = [
+    { id: "openai", name: "OpenAI", url: "https://openai.com/", file: "openai.png", width: 44, height: 45 },
+    { id: "anthropic", name: "Anthropic", url: "https://www.anthropic.com/", file: "anthropic.png", width: 48, height: 34 },
+    { id: "deepmind", name: "Google DeepMind", url: "https://deepmind.google/", file: "google-deepmind.png", width: 38, height: 38 },
+    { id: "edison", name: "Edison Scientific", url: "https://edisonscientific.com/", file: "edison.png", width: 46, height: 46 },
+    { id: "lila", name: "Lila Sciences", url: "https://www.lila.ai/", file: "lila-wordmark.png", width: 44, height: 44 },
+];
+---
+
+<section class="customers" aria-labelledby="customers-heading">
+    <h2 id="customers-heading" class="font-mono font-light">
+        Selected customers
+    </h2>
+    <ul class="customer-logos" role="list">
+        {customers.map((customer) => (
+            <li title={customer.name} data-customer={customer.id} class:list={{ "lila-logo": customer.id === "lila" }}>
+                <a class="customer-mark" href={customer.url} target="_blank" rel="noopener noreferrer" aria-label={`${customer.name} (opens in a new tab)`}>
+                <div class="logo-art" style={`--logo-width: ${customer.width}px; --logo-height: ${customer.height}px`}>
+                <img
+                    src={`/customers/${customer.file}`}
+                    alt=""
+                    width={customer.width}
+                    height={customer.height}
+                />
+                </div>
+                </a>
+            </li>
+        ))}
+    </ul>
+</section>
+
+<style>
+    .customers {
+        position: relative;
+        z-index: 10;
+        flex-shrink: 0;
+        margin: 0 15px;
+        padding: 20px 0 26px;
+        background-color: #EDEFEB;
+    }
+
+    h2 {
+        margin: 0 0 14px;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+    }
+
+    .customer-logos {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+    }
+
+    .lila-logo {
+        margin-left: 3px;
+    }
+
+    .customer-mark {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        flex-shrink: 0;
+        border-radius: 8px;
+    }
+
+    .customer-mark:focus-visible {
+        outline: 1px solid rgb(35 35 35 / 45%);
+        outline-offset: 3px;
+    }
+
+    .logo-art {
+        position: relative;
+        width: var(--logo-width);
+        height: var(--logo-height);
+        opacity: 0.38;
+        transition: opacity 250ms ease;
+    }
+
+    .customer-mark:is(:hover, :focus-visible) .logo-art {
+        opacity: 0.58;
+    }
+
+    img {
+        display: block;
+        width: var(--logo-width);
+        max-width: 100%;
+        height: var(--logo-height);
+        object-fit: contain;
+        object-position: center;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .logo-art {
+            transition: none;
+        }
+    }
+
+    @media (max-width: 809px) {
+        .customers {
+            padding: 24px 0 30px;
+        }
+
+        .customer-logos {
+            gap: 8px;
+        }
+
+    }
+</style>
