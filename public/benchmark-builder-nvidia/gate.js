@@ -28,7 +28,8 @@
      another customer's domain. The rule itself is enforced server-side. */
   var HINTS = {
     "benchmark-builder-gdm": "you@google.com",
-    "benchmark-builder-nvidia": "you@nvidia.com"
+    "benchmark-builder-nvidia": "you@nvidia.com",
+    "benchmark-builder-lila": "you@lila.ai"
   };
   if (email && HINTS[source]) email.placeholder = HINTS[source];
 

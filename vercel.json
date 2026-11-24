@@ -10,6 +10,11 @@
       "source": "/benchmark-builder-nvidia",
       "destination": "/benchmark-builder-nvidia/",
       "permanent": false
+    },
+    {
+      "source": "/benchmark-builder-lila",
+      "destination": "/benchmark-builder-lila/",
+      "permanent": false
     }
   ],
   "rewrites": [

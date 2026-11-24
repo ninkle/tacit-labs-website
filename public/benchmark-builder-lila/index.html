@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scientific evaluation scoping — Tacit Labs</title>
+  <meta name="description" content="Select the fundamental science and drug-development tasks to include in benchmark">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    /* Per-page key: sessionStorage is per-origin, so a shared key would let a
+       sign-in on one customer's builder unlock another's. */
+    try {
+      var _src = location.pathname.split("/").filter(Boolean)[0] || "gapmap";
+      if (sessionStorage.getItem("gapmap_unlocked_" + _src) !== "1")
+        document.documentElement.classList.add("locked");
+    } catch (e) { document.documentElement.classList.add("locked"); }
+  </script>
+</head>
+<body>
+
+  <div class="gate-overlay" id="gate">
+    <div class="gate-card">
+      <img class="gate-logo" src="logo.svg" alt="Tacit Labs">
+      <div class="eyebrow">Tacit Labs · Evaluation scoping</div>
+      <h2 class="gate-title">Restricted access</h2>
+      <p class="gate-note">This page is not public. Sign in with your work email
+        and the passphrase you were sent.</p>
+      <form id="gate-form" autocomplete="on">
+        <input id="gate-email" type="email" autocomplete="email" spellcheck="false"
+               placeholder="you@work-email.com" aria-label="Work email" required>
+        <div class="gate-row">
+          <input id="gate-input" type="password" inputmode="text" autocomplete="current-password"
+                 spellcheck="false" placeholder="Passphrase" aria-label="Passphrase" required>
+          <button type="submit" id="gate-submit">Continue&nbsp;→</button>
+        </div>
+      </form>
+      <div class="gate-error" id="gate-error" hidden></div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="https://tacitlabs.co/" aria-label="Tacit Labs"><img class="logo" src="logo.svg" alt="Tacit Labs"></a>
+      <span class="brand">TACIT LABS</span>
+      <div class="links">
+        <a href="https://tacitlabs.co/team">TEAM</a>
+        <a href="https://tacitlabs.co/introducing-tacit-labs">BLOG</a>
+        <a href="#applied">APPLIED</a>
+        <a href="#fundamental">FUNDAMENTAL</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Tacit Labs · Evaluation scoping</div>
+      <h1>Benchmark taxonomy <em>builder</em></h1>
+      <p class="lede">Tacit Labs develops evaluations of AI systems performing scientific work.
+        The evaluations are authored and graded by domain experts and can test scientific
+        reasoning, data analysis, tool use and decision-making.</p>
+      <p class="lede howto">The taxonomy below covers applied drug discovery and fundamental
+        research. Select the stages, themes or individual subtasks that should be included in
+        the evaluation.</p>
+
+      <div class="steps">
+        <div class="step"><span class="sn">1</span><b>Select</b>Choose the scientific work to include.</div>
+        <div class="step"><span class="sn">2</span><b>Review</b>Review the resulting scope, capabilities and estimated task count.</div>
+        <div class="step"><span class="sn">3</span><b>Submit</b>Send the scope to Tacit Labs for a proposed coverage plan, timeline and price.</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== APPLIED ===================== -->
+  <section class="block arena" id="applied" data-arena="applied">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="num">Arena 01 · Applied discovery</span>
+        <h2>Drug discovery and development</h2>
+      </div>
+      <p class="section-sub">Drug discovery and development are organised around a sequence of
+        decisions, from disease and target selection through post-market evidence generation.
+        Each decision is supported by a distinct set of analyses, experiments and regulatory
+        activities. This section groups those activities by the stage at which they are used.</p>
+      <p class="section-sub">Select the relevant modality, then choose the stages or subtasks to
+        include. The work differs substantially across small molecules, biologics, cell therapies
+        and other modalities.</p>
+
+      <div class="controls"><div class="tabs" data-part="tabs" role="tablist"></div></div>
+      <div class="stats" data-part="stats"></div>
+
+      <div class="legend">
+        <span class="k"><i class="swatch sw-insilico"></i>Currently AI-addressable</span>
+        <span class="k"><i class="swatch sw-human"></i>Requires human judgement</span>
+        <span class="k"><i class="swatch sw-physical"></i>Requires physical execution</span>
+        <span class="k"><i class="swatch sw-regulatory"></i>Requires regulatory sign-off</span>
+        <span class="k"><i class="swatch sw-decision"></i>Go / no-go decision</span>
+      </div>
+
+      <div class="pipe-scroll"><div class="pipe" data-part="spine" role="tablist"></div></div>
+      <div class="drawer" data-part="drawer" hidden></div>
+    </div>
+  </section>
+
+  <!-- ===================== FUNDAMENTAL ===================== -->
+  <section class="block arena" id="fundamental" data-arena="fundamental">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="num">Arena 02 · Fundamental discovery</span>
+        <h2>Fundamental scientific research</h2>
+      </div>
+      <p class="section-sub">Fundamental research can be represented as a sequence of activities:
+        grounding a question in existing evidence, formulating a falsifiable hypothesis,
+        designing and executing experiments, analysing the resulting data, interpreting the
+        findings, testing their robustness and communicating the conclusions. These stages are
+        not strictly linear and are often repeated as evidence changes.</p>
+      <p class="section-sub">Select a scientific domain, then choose the research themes to
+        include. A theme is a recurring type of scientific work rather than a single task. We
+        typically author approximately <b>18 evaluation tasks</b> for each selected theme.</p>
+
+      <div class="controls"><div class="tabs" data-part="tabs" role="tablist"></div></div>
+      <div class="stats" data-part="stats"></div>
+
+      <p class="legend-lead">Each theme is labelled by <b>the source of its ground truth</b>.
+        This determines how the task can be constructed and validated:</p>
+      <div class="legend">
+        <span class="k"><i class="swatch sw-rubric"></i>Expert rubric — reasoning scored against expert-authored criteria</span>
+        <span class="k"><i class="swatch sw-retrospective"></i>Held-out known result</span>
+        <span class="k"><i class="swatch sw-computational"></i>Computable ground truth</span>
+        <span class="k"><i class="swatch sw-experimental"></i>Requires new wet-lab ground truth</span>
+      </div>
+
+      <div class="pipe-scroll"><div class="pipe" data-part="spine" role="tablist"></div></div>
+      <div class="drawer" data-part="drawer" hidden></div>
+    </div>
+  </section>
+
+  <!-- ===================== BASKET + MODAL ===================== -->
+  <div class="basket" id="basket" hidden>
+    <div class="basket-in">
+      <div class="basket-info">
+        <div class="basket-txt" id="basket-txt"></div>
+        <div class="basket-est" id="basket-est"></div>
+      </div>
+      <button class="btn-ghost sm" id="basket-clear">Clear</button>
+      <button class="btn" id="basket-review">Review scope →</button>
+    </div>
+  </div>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Review your scope">
+      <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-foot" id="modal-foot"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap fw">
+      <span>© Tacit Labs · Evaluation scoping</span>
+      <span><span id="foot-n">—</span> subtasks across two arenas</span>
+      <span><a href="https://tacitlabs.co/">tacitlabs.co ↗</a></span>
+    </div>
+  </footer>
+
+  <script src="gate.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="brief.js"></script>
+</body>
+</html>
